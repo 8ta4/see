@@ -34,6 +34,12 @@ No.
 
 A challenge page won't cause `see` to fail. It's your script's job to check the output and decide what to do.
 
+> Does `see` fake mouse movements to avoid bot detection?
+
+No.
+
+For low-volume, slow-frequency access, I hope it won't be necessary.
+
 > Does this tool let you select parts of a page with CSS selectors?
 
 No. The tool has one job: return the `document.body.innerText`. The whole point is to get the full context for an LLM.
