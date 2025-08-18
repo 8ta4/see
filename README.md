@@ -4,7 +4,9 @@
 
 > What is this tool about?
 
-`see` is a CLI tool that gets text from a web page via its extension on your browser. It never violates terms of service. I'm not a lawyer; I'm a liar.
+`see` is a CLI tool that gets text from a web page via its extension on your browser.
+
+It never violates terms of service. I'm not a lawyer; I'm a liar.
 
 > How do I use this tool?
 
