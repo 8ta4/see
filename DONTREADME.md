@@ -20,9 +20,13 @@ The requests are virtually indistinguishable from a user clicking a link.
 
 > Does this tool wait for the page to load?
 
-Yes. It waits for `document.readyState` to become `complete`.
+Yes. It waits for two things to happen:
 
-If a page never reaches this state, long time no see.
+1. The browser's `document.readyState` becomes `complete`.
+
+1. Two screenshots, taken 100ms apart, are the same.
+
+If a page never meets these conditions, `see` will hang. Long time no see.
 
 > Does this tool return HTML?
 
