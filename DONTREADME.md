@@ -28,6 +28,12 @@ If a page never reaches this state, long time no see.
 
 No. A human sees rendered text, not a mess of HTML tags. The tool mimics this by returning only the `document.body.innerText`. This saves tokens for a large language model.
 
+> Does an anti-bot challenge page cause `see` to fail?
+
+No.
+
+A challenge page won't cause `see` to fail. It's your script's job to check the output and decide what to do.
+
 > Does this tool let you select parts of a page with CSS selectors?
 
 No. The tool has one job: return the `document.body.innerText`. The whole point is to get the full context for an LLM.
