@@ -4,7 +4,7 @@
 
 > What is this tool about?
 
-`see` is a command-line tool for ripping the text out of a web page.
+`see` is a CLI tool that gets text from a web page via its extension on your browser.
 
 > How do I use this tool?
 
