@@ -28,6 +28,14 @@ Yes. It waits for two things to happen:
 
 If a page never meets these conditions, `see` will hang. Long time no see.
 
+> Does `see` use Readability.js to find the main content?
+
+No. Readability.js is too aggressive. It throws away things you might need.
+
+> Does `see` use Turndown to convert HTML to Markdown?
+
+No. Turndown can leave in junk.
+
 > Does this tool return HTML?
 
 No. A human sees rendered text, not a mess of HTML tags. The tool mimics this by returning the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
