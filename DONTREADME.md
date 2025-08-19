@@ -44,6 +44,8 @@ It waits 100 milliseconds.
 
 This interval is chosen to make the tool itself feel fast. After a page is visibly done, the last thing you want is for the tool to add its own noticeable delay.
 
+"[0.1 second is about the limit for having the user feel that the system is reacting instantaneously](https://www.nngroup.com/articles/response-times-3-important-limits/#:~:text=0.1%20second%20is%20about%20the%20limit%20for%20having%20the%20user%20feel%20that%20the%20system%20is%20reacting%20instantaneously)".
+
 > Does `see` use Readability.js to find the main content?
 
 No. Readability.js is too aggressive. It throws away things you might need.
