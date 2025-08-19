@@ -48,7 +48,17 @@ No. Turndown can leave in junk.
 
 > Does this tool return HTML?
 
-No. A human sees rendered text, not a mess of HTML tags. The tool mimics this by returning the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
+No. A human sees rendered text, not a mess of HTML tags.
+
+> Does this tool return `textContent`?
+
+No. `textContent` It has two problems:
+
+- It'll grab all the text from inside `<script>` and `<style>` tags.
+
+- It also ignores CSS, so it will happily give you text from elements that are hidden.
+
+That's why the tool returns the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
 
 > Does an anti-bot challenge page cause `see` to fail?
 
