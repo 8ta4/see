@@ -34,9 +34,15 @@ Yes. It waits for two things to happen:
 
 1. The browser's `document.readyState` becomes `complete`.
 
-1. Two screenshots, taken 100ms apart, are the same.
+1. Two consecutive screenshots of the page are the same.
 
 If a page never meets these conditions, `see` will hang. Long time no see.
+
+> How long does `see` wait between screenshots?
+
+It waits 100 milliseconds.
+
+This interval is chosen to make the tool itself feel fast. After a page is visibly done, the last thing you want is for the tool to add its own noticeable delay.
 
 > Does `see` use Readability.js to find the main content?
 
