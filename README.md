@@ -6,7 +6,7 @@
 
 `see` is a CLI tool that gets text from a web page via its extension on your browser.
 
-It never violates terms of service. I'm not a lawyer; I'm a liar.
+The goal is to see and be seen as human. There are no ifs, ands, or bots.
 
 > How do I use this tool?
 
