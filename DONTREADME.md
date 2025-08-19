@@ -10,11 +10,21 @@ Controlling a browser from the outside may leave a fingerprint.
 
 > Does this tool use Chrome's remote debugging port?
 
-Connecting to the browser via the remote debugging port may leave a fingerprint.
+Connecting via the remote debugging port can leave a fingerprint.
+
+Instead, `see` talks to a companion Chrome extension. Since it runs in your day-to-day browser, requests use your fingerprint and look like normal browsing activity.
+
+> Does the CLI use a local HTTP server to talk to the extension?
+
+No, that's a polling nightmare.
+
+First, the extension has to constantly ask, "Is the server even running yet?". Then, once it connects, it has to keep asking, "Do you have a job for me yet?".
+
+> Does the CLI use a local WebSocket server to talk to the extension?
+
+A WebSocket can push jobs without the second layer of polling. But it still has the same "are you there?" problem.
 
 `see` uses Chrome's native messaging.
-
-The requests are virtually indistinguishable from a user clicking a link.
 
 ### See as Human
 
