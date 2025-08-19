@@ -30,7 +30,7 @@ If a page never meets these conditions, `see` will hang. Long time no see.
 
 > Does this tool return HTML?
 
-No. A human sees rendered text, not a mess of HTML tags. The tool mimics this by returning only the `document.body.innerText`. This saves tokens for a large language model.
+No. A human sees rendered text, not a mess of HTML tags. The tool mimics this by returning the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
 
 > Does an anti-bot challenge page cause `see` to fail?
 
@@ -42,7 +42,7 @@ No. For low-volume, slow-frequency access, I hope it won't be necessary.
 
 > Does this tool let you select parts of a page with CSS selectors?
 
-No. The tool has one job: return the `document.body.innerText`. The whole point is to get the full context for an LLM.
+No. The tool has one job: return the `document.title` and `document.body.innerText`. The whole point is to get the full context for an LLM.
 
 ## CLI
 
