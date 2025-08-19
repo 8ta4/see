@@ -54,9 +54,9 @@ No. A human sees rendered text, not a mess of HTML tags.
 
 No. `textContent` It has two problems:
 
-- [It'll grab all the text from inside `<script>` and `<style>` tags](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#:~:text=textContent%20gets%20the%20content%20of%20all%20elements%2C%20including%20%3Cscript%3E%20and%20%3Cstyle%3E%20elements.).
+- ["`textContent` gets the content of all elements, including `<script>` and `<style>` elements."](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#:~:text=textContent%20gets%20the%20content%20of%20all%20elements%2C%20including%20%3Cscript%3E%20and%20%3Cstyle%3E%20elements.)
 
-- [It'll happily give you text from elements that are hidden](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#:~:text=textContent%20returns%20every%20element%20in%20the%20node.).
+- ["`textContent` returns every element in the node."](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#:~:text=textContent%20returns%20every%20element%20in%20the%20node.) So it'll happily give you text from elements that are hidden.
 
 That's why the tool returns the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
 
