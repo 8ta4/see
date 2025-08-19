@@ -12,7 +12,7 @@ Controlling a browser from the outside may leave a fingerprint.
 
 Connecting to the browser via the remote debugging port may leave a fingerprint.
 
-`see` uses Chrome's Native Messaging API.
+`see` uses Chrome's native messaging.
 
 The requests are virtually indistinguishable from a user clicking a link.
 
