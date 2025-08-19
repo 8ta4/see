@@ -6,17 +6,17 @@
 
 > Does this tool use Playwright?
 
-Controlling a browser from the outside may leave a fingerprint.
+No. Controlling a browser from the outside may leave a fingerprint.
 
 > Does this tool use Chrome's remote debugging port?
 
-Connecting via the remote debugging port can leave a fingerprint.
+No. Connecting via the remote debugging port can leave a fingerprint.
 
 Instead, `see` talks to a companion Chrome extension. Since it runs in your day-to-day browser, requests use your fingerprint and look like normal browsing activity.
 
 > Does the CLI use a local HTTP server to talk to the extension?
 
-No, that's a polling nightmare.
+No. that's a polling nightmare.
 
 First, the extension has to constantly ask, "Is the server even running yet?" Then, once it connects, it has to keep asking, "Do you have a job for me yet?"
 
