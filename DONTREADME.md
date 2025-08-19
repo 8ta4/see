@@ -18,7 +18,7 @@ Instead, `see` talks to a companion Chrome extension. Since it runs in your day-
 
 No, that's a polling nightmare.
 
-First, the extension has to constantly ask, "Is the server even running yet?". Then, once it connects, it has to keep asking, "Do you have a job for me yet?".
+First, the extension has to constantly ask, "Is the server even running yet?" Then, once it connects, it has to keep asking, "Do you have a job for me yet?"
 
 > Does the CLI use a local WebSocket server to talk to the extension?
 
