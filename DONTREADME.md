@@ -68,9 +68,9 @@ No. `textContent` It has two problems:
 
 That's why the tool returns the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
 
-> Does an anti-bot challenge page cause `see` to fail?
+> Does an anti-bot challenge page cause `see` to exit with an error?
 
-No. A challenge page won't cause `see` to fail. It's your script's job to check the output and decide what to do.
+No. `see` just sees what's there, and gives you its text. It's your script's job to check that output and decide what to do.
 
 > Does `see` fake mouse movements?
 
