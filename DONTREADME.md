@@ -30,13 +30,13 @@ A WebSocket can push jobs without the second layer of polling. But it still has 
 
 > Does this tool wait for the page to load?
 
-Yes. It waits for two things to happen:
+Yes. It'll grab the text as soon as one of two things happens:
 
-1. The browser's `document.readyState` becomes `complete`.
+- Two consecutive screenshots become identical after the browser's `readyState` is `complete`.
 
-1. Two consecutive screenshots of the page are the same.
+- 10 seconds go by since the navigation started.
 
-If a page never meets these conditions, `see` will hang. Long time no see.
+I put that 10-second limit in because anything more starts to feel broken.
 
 > How long does `see` wait between screenshots?
 
