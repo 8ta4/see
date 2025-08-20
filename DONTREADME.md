@@ -72,7 +72,7 @@ That's why the tool returns the `document.title` and `document.body.innerText` a
 
 No. A challenge page won't cause `see` to fail. It's your script's job to check the output and decide what to do.
 
-> Does `see` fake mouse movements to avoid bot detection?
+> Does `see` fake mouse movements?
 
 Yes. `see` moves the cursor along along some human-like paths.
 
