@@ -74,7 +74,7 @@ No. A challenge page won't cause `see` to fail. It's your script's job to check 
 
 > Does `see` fake mouse movements to avoid bot detection?
 
-No. For low-volume, low-frequency access, I hope it won't be necessary.
+Yes. `see` moves the cursor along along some human-like paths.
 
 > Does this tool let you select parts of a page with CSS selectors?
 
