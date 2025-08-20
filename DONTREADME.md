@@ -16,7 +16,7 @@ Instead, `see` talks to a companion Chrome extension. Since it runs in your day-
 
 > Does the CLI use a local HTTP server to talk to the extension?
 
-No. that's a polling nightmare.
+No. that's a polling nightmare. Truly appalling.
 
 First, the extension has to constantly ask, "Is the server even running yet?" Then, once it connects, it has to keep asking, "Do you have a job for me yet?"
 
