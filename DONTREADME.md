@@ -50,6 +50,22 @@ Yes. It'll grab the text as soon as one of two things happens:
 
 I put that 10-second limit in because anything more starts to feel broken.
 
+> Won't a never-ending animation cause a timeout?
+
+Yep.
+
+If you're on a page for the first time, that 10-second wait is fine. `see` can't tell the difference between a harmless animation and a loading spinner, so it just waits.
+
+If you're hitting the same page over and over and that delay is bugging you, that's your cue to fix it. Use an extension like uBlock Origin to hide the damn animation.
+
+> Does `see` check network requests to see if the page is done loading?
+
+No.
+
+A network call could just be some analytics ping that changes nothing on the screen.
+
+A quiet network doesn't mean JavaScript isn't in the middle of some heavy lifting to build the page.
+
 > How long does `see` wait between screenshots?
 
 It waits 100 milliseconds.
@@ -86,7 +102,9 @@ No. `see` just sees what's there, and gives you its text. It's your script's job
 
 > Does this tool let you select parts of a page with CSS selectors?
 
-No. The tool has one job: return the `document.title` and `document.body.innerText`. The whole point is to get the full context for an LLM.
+No. The tool has one job: return the `document.title` and `document.body.innerText`.
+
+`see` isn't for surgically extracting specific text. The whole point is to give an LLM the big-picture context of a page.
 
 ## CLI
 
