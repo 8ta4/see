@@ -34,6 +34,10 @@ Yes. `see` uses [`ghost-cursor`](https://github.com/Xetera/ghost-cursor) to move
 
 No. That's your script's job, not the tool's. Your script knows if you're hitting a site that needs you to slow down. If I baked in a delay, it would just make `see` feel sluggish for no reason on sites that don't need it.
 
+> Does `see` automate logins?
+
+No. `see` uses your real browser session. You log in first. Then you run the command. `see` will see the page just like you do.
+
 ### See as Human
 
 > Does this tool wait for the page to load?
