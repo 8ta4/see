@@ -28,7 +28,7 @@ A WebSocket can push jobs without the second layer of polling. But it still has 
 
 > Does `see` fake mouse movements?
 
-Yes. `see` uses `ghost-cursor` to move it along some human-like paths. It's cheap insurance.
+Yes. `see` uses [`ghost-cursor`](https://github.com/Xetera/ghost-cursor) to move it along some human-like paths. It's cheap insurance.
 
 > Does `see` add its own delay?
 
