@@ -26,6 +26,10 @@ A WebSocket can push jobs without the second layer of polling. But it still has 
 
 `see` uses Chrome's native messaging.
 
+> Does `see` fake mouse movements?
+
+Yes. `see` moves the cursor along along some human-like paths.
+
 ### See as Human
 
 > Does this tool wait for the page to load?
@@ -71,10 +75,6 @@ That's why the tool returns the `document.title` and `document.body.innerText` a
 > Does an anti-bot challenge page cause `see` to exit with an error?
 
 No. `see` just sees what's there, and gives you its text. It's your script's job to check that output and decide what to do.
-
-> Does `see` fake mouse movements?
-
-Yes. `see` moves the cursor along along some human-like paths.
 
 > Does this tool let you select parts of a page with CSS selectors?
 
