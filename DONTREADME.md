@@ -28,7 +28,11 @@ A WebSocket can push jobs without the second layer of polling. But it still has 
 
 > Does `see` fake mouse movements?
 
-Yes. `see` moves the cursor along along some human-like paths.
+Yes. `see` uses `ghost-cursor` to move it along some human-like paths. It's cheap insurance.
+
+> Does `see` add its own delay?
+
+No. That's your script's job, not the tool's. Your script knows if you're hitting a site that needs you to slow down. If I baked in a delay, it would just make `see` feel sluggish for no reason on sites that don't need it.
 
 ### See as Human
 
