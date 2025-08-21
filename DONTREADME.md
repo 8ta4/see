@@ -6,7 +6,7 @@
 
 > Does this tool use Playwright?
 
-No. Controlling a browser from the outside may leave a fingerprint.
+No. Controlling a browser from the outside may leave a fingerprint. [`puppeteer-extra`](https://github.com/berstend/puppeteer-extra) hasn't been updated in a while.
 
 > Does this tool use Chrome's remote debugging port?
 
