@@ -32,7 +32,7 @@ Yep.
 
 - Just landing on a page and doing nothing is a classic bot move. So `see` fakes a few scrolls to look more human.
 
-- I'm a big Vimium user myself, and I almost never get flagged. Those extensions send scroll events where `isTrusted` is `false`, and websites have to let that slide or they'd block a ton of us. `see` mimics that same, well-tolerated activity.
+- I'm a [Vimium](https://github.com/philc/vimium) user, and I almost never get flagged. Those extensions send scroll events where `isTrusted` is `false`, and websites have to let that slide or they'd block a ton of us. `see` mimics that same, well-tolerated activity.
 
 > Does `see` fake mouse movements?
 
