@@ -59,6 +59,13 @@
     # https://github.com/NixOS/nixfmt/blob/2caa09642c3cde5985cf8d239ffc66094c344c57/README.md?plain=1#L168
     nixfmt-rfc-style.enable = true;
     prettier.enable = true;
+    # https://github.com/cachix/git-hooks.nix/issues/31#issuecomment-744657870
+    trailing-whitespace = {
+      enable = true;
+      # https://github.com/pre-commit/pre-commit-hooks/blob/5c514f85cc9be49324a6e3664e891ac2fc8a8609/.pre-commit-hooks.yaml#L205-L212
+      entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/trailing-whitespace-fixer";
+      types = [ "text" ];
+    };
   };
 
   # See full reference at https://devenv.sh/reference/options/
