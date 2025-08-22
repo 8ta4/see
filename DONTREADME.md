@@ -58,6 +58,10 @@ No. That's your script's job, not the tool's. Your script knows if you're hittin
 
 No. `see` uses your real browser session. You log in first. Then you run the command. `see` will see the page just like you do.
 
+> Does `see` deal with cookie banners?
+
+No. That's your job. You click accept once, and `see` uses your session. It's the same deal as logging in.
+
 ### See as Human
 
 > Does this tool wait for the page to load?
@@ -129,6 +133,14 @@ No. `see` just sees what's there, and gives you its text. It's your script's job
 No. The tool has one job: return the `document.title` and `document.body.innerText`.
 
 `see` isn't for surgically extracting specific text. The whole point is to give an LLM the big-picture context of a page.
+
+> Does `see` click things to make more text appear?
+
+No. The tool is called `see`, not `do`. It doesn't click anything. Its job is to report what's visible when the page loads. That's it.
+
+> Does `see` scroll down to load more content?
+
+No. `see` doesn't scroll. It captures the content loaded in the viewport.
 
 ## CLI
 
