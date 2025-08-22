@@ -1,4 +1,4 @@
-# https://devenv.sh/integrations/github-actions/#complete-example
+# https://github.com/cachix/devenv/blob/f6c95ebeeb0195b40c4d2ca1bd1362a142adc86c/docs/integrations/github-actions.md?plain=1#L127-L153
 name: "Test"
 
 on:
