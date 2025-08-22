@@ -60,7 +60,7 @@ For one, it looks way more human to the site you're visiting. To them, your sess
 
 Plus, there's the chance that two sites you're scraping both use something like Cloudflare. If you reuse the same tab to jump between them, you're leaving a clear signal. A human might jump between sites like that once, sure. But doing it repeatedly, every few seconds starts to look like a pattern.
 
-Yeah, it's going to clutter up your browser. That's the trade-off. The tool's job is to be stealthy, not to be tidy. Your script can quit Chrome later to clean up the mess.
+Yeah, it's going to clutter up your browser. That's the trade-off. The tool's job is to be stealthy, not to be tidy. Your script can quit Chrome to clean up the mess after a batch of runs.
 
 > Does `see` add its own delay?
 
