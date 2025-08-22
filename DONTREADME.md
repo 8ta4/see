@@ -24,7 +24,7 @@ First, the extension has to constantly ask, "Is the server even running yet?" Th
 
 A WebSocket can push jobs without the second layer of polling. But it still has the same "are you there?" problem.
 
-`see` uses Chrome's native messaging.
+`see` uses Chrome's native messaging and a UNIX domain socket.
 
 > Does `see` fake mouse movements?
 
