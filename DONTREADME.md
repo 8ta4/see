@@ -70,7 +70,7 @@ Yep.
 
 If you're on a page for the first time, that 10-second wait is fine. `see` can't tell the difference between a harmless animation and a loading spinner, so it just waits.
 
-If you're hitting the same page over and over and that delay is bugging you, that's your cue to fix it. Use an extension like uBlock Origin to hide the damn animation.
+If you're hitting the same page over and over and that delay is bugging you, that's your cue to fix it. Use an extension like uBlock Origin to hide the animation.
 
 > Does `see` check network requests to see if the page is done loading?
 
