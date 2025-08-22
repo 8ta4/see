@@ -54,11 +54,13 @@ No. Hijacking the tab you're potentially using is disruptive. `see` creates a ne
 
 > Does `see` close the tab when it's done?
 
-Yes. Keeping the tab open makes sense if you can fake a human using it. But faking scrolls and mouse moves is a dead giveaway.
+No. `see` just leaves the tab open.
 
-The other option is to leave the tab open and idle. The problem is the next run. The tool would have to choose between acting instantly, which looks robotic, or adding its own delay.
+For one, it looks way more human to the site you're visiting. To them, your session isn't over, it's just backgrounded. It looks like you're multitasking.
 
-Closing it right away keeps your workspace from getting cluttered.
+Plus, there's the chance that two sites you're scraping both use something like Cloudflare. If you reuse the same tab to jump between them, you're leaving a clear signal. A human might jump between sites like that once, sure. But doing it repeatedly, every few seconds starts to look like a pattern.
+
+Yeah, it's going to clutter up your browser. That's the trade-off. The tool's job is to be stealthy, not to be tidy. Your script can quit Chrome later to clean up the mess.
 
 > Does `see` add its own delay?
 
