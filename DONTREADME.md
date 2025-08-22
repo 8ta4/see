@@ -34,6 +34,22 @@ No.
 
 - If `see` moves the cursor and then you move your real mouse, an unnatural jump can be detected.
 
+> Does `see` fake scrolls?
+
+No. A Vimium user's scroll is untrusted, but it's explained by a key press with `isTrusted: true` that came first. `see` can't fake that initial trusted event.
+
+> Does `see` use my active tab?
+
+No. Hijacking the tab you're potentially using is disruptive. `see` creates a new tab for each job instead.
+
+> Does `see` close the tab when it's done?
+
+Yes. Keeping the tab open makes sense if you can fake a human using it. But faking scrolls and mouse moves is a dead giveaway.
+
+The other option is to leave the tab open and idle. The problem is the next run. The tool would have to choose between acting instantly, which looks robotic, or adding its own delay.
+
+Closing it right away keeps your workspace from getting cluttered.
+
 > Does `see` add its own delay?
 
 No. That's your script's job, not the tool's. Your script knows if you're hitting a site that needs you to slow down. If I baked in a delay, it would just make `see` feel sluggish for no reason on sites that don't need it.
