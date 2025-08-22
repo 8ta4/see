@@ -110,6 +110,10 @@ No. `textContent` It has two problems:
 
 That's why the tool returns the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
 
+> Does `see` exit with an error on a 404?
+
+No. If your browser hits a 404, it shows that error page. `see` just grabs the text from that page. It's on your script to look at the output and decide what to do.
+
 > Does an anti-bot challenge page cause `see` to exit with an error?
 
 No. `see` just sees what's there, and gives you its text. It's your script's job to check that output and decide what to do.
