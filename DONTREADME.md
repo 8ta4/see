@@ -26,14 +26,6 @@ A WebSocket can push jobs without the second layer of polling. But it still has 
 
 `see` uses Chrome's native messaging.
 
-> Does `see` fake scrolls?
-
-Yep.
-
-- Just landing on a page and doing nothing is a classic bot move. So `see` fakes a few scrolls to look more human.
-
-- I'm a [Vimium](https://github.com/philc/vimium) user, and I almost never get flagged. Those extensions send scroll events where `isTrusted` is `false`, and websites have to let that slide or they'd block a ton of us. `see` mimics that same, well-tolerated activity.
-
 > Does `see` fake mouse movements?
 
 No.
@@ -41,8 +33,6 @@ No.
 - A real mouse move is `isTrusted: true`, but a fake one is `false`. A mix of both for the same input type is a weird signal.
 
 - If `see` moves the cursor and then you move your real mouse, an unnatural jump can be detected.
-
-- Tons of us browse with just the keyboard, and websites have to work for us.
 
 > Does `see` add its own delay?
 
