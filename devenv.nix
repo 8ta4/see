@@ -58,6 +58,7 @@
     };
     # https://github.com/NixOS/nixfmt/blob/2caa09642c3cde5985cf8d239ffc66094c344c57/README.md?plain=1#L168
     nixfmt-rfc-style.enable = true;
+    prettier.enable = true;
   };
 
   # See full reference at https://devenv.sh/reference/options/
