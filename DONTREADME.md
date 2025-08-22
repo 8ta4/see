@@ -140,7 +140,7 @@ No. The tool is called `see`, not `do`. It doesn't click anything. Its job is to
 
 > Does `see` scroll down to load more content?
 
-No. `see` doesn't scroll. It captures the content loaded in the viewport.
+No. `see` doesn't scroll.
 
 ## CLI
 
