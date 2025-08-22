@@ -14,17 +14,27 @@ No. Connecting via the remote debugging port can leave a fingerprint.
 
 Instead, `see` talks to a companion Chrome extension. Since it runs in your day-to-day browser, requests use your fingerprint and look like normal browsing activity.
 
-> Does the CLI use a local HTTP server to talk to the extension?
+> Does the extension connect to a local HTTP server to talk to the CLI?
 
-No. that's a polling nightmare. Truly appalling.
+No.
 
-First, the extension has to constantly ask, "Is the server even running yet?" Then, once it connects, it has to keep asking, "Do you have a job for me yet?"
+- Opening a network port is a security risk I'd rather not take.
 
-> Does the CLI use a local WebSocket server to talk to the extension?
+- It's also a polling nightmare. Truly appalling. The extension has to ask, "Is the server even running?" and then it has to keep asking, "Do you have a job for me?"
 
-A WebSocket can push jobs without the second layer of polling. But it still has the same "are you there?" problem.
+> Does the extension connect to a local WebSocket server to talk to the CLI?
 
-`see` uses Chrome's native messaging and a UNIX domain socket.
+No.
+
+- You're opening a network port. So that security risk is on the table.
+
+- A WebSocket solves the second polling problem: "Do you have a job for me?" But you're still stuck with the first one: "Is the server even running?"
+
+> Does the CLI connect to a WebSocket on the Native Messaging host?
+
+No. That would mean opening a network port, which is a security risk.
+
+Instead, it just uses a UNIX domain socket.
 
 > Does `see` fake mouse movements?
 
