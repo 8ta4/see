@@ -5,7 +5,10 @@
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = [
+    pkgs.git
+    pkgs.gitleaks
+  ];
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;
@@ -40,6 +43,14 @@
 
   # https://devenv.sh/git-hooks/
   # git-hooks.hooks.shellcheck.enable = true;
+  git-hooks.hooks = {
+    gitleaks = {
+      enable = true;
+      # https://github.com/gitleaks/gitleaks/blob/a82bc53d895f457897448637779383f607582c7c/.pre-commit-hooks.yaml#L4
+      # Direct execution of gitleaks here results in '[git] fatal: cannot change to 'devenv.nix': Not a directory'.
+      entry = "bash -c 'exec gitleaks git --redact --staged --verbose'";
+    };
+  };
 
   # See full reference at https://devenv.sh/reference/options/
 }
