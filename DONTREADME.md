@@ -20,15 +20,13 @@ No.
 
 - Opening a network port is a security risk I'd rather not take.
 
-- It's also a polling nightmare. Truly appalling. The extension has to ask, "Is the server even running?" and then it has to keep asking, "Do you have a job for me?"
+- It's also a polling nightmare. Truly appalling. The extension has to keep asking, "Do you have a job for me?"
 
 > Does the extension connect to a local WebSocket server to talk to the CLI?
 
 No.
 
-- You're opening a network port. So that security risk is on the table.
-
-- A WebSocket solves the second polling problem: "Do you have a job for me?" But you're still stuck with the first one: "Is the server even running?"
+You're opening a network port. So that security risk is on the table.
 
 Instead, the extension connects to a native messaging host to talk to the CLI.
 
