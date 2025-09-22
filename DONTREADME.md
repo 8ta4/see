@@ -32,7 +32,7 @@ Instead, the extension connects to a native messaging host to talk to the CLI.
 
 > Will the service worker connected to a native host go inactive?
 
-No. [Connecting to a native messaging host using chrome.runtime.connectNative() will keep a service worker alive.](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle#:~:text=Connecting%20to%20a%20native%20messaging%20host%20using%20chrome.runtime.connectNative()%20will%20keep%20a%20service%20worker%20alive.)
+No. "[Connecting to a native messaging host using chrome.runtime.connectNative() will keep a service worker alive.](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle#:~:text=Connecting%20to%20a%20native%20messaging%20host%20using%20chrome.runtime.connectNative()%20will%20keep%20a%20service%20worker%20alive.)"
 
 > Does the CLI connect to a WebSocket on the Native Messaging host?
 
