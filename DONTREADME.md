@@ -22,6 +22,12 @@ No.
 
 - It's also a polling nightmare. Truly appalling. The extension has to ask, "Is the server even running?" and then it has to keep asking, "Do you have a job for me?"
 
+Instead, the extension connects to a native messaging host to talk to the CLI.
+
+> Will the service worker connected to a native host go inactive?
+
+No.
+
 > Does the extension connect to a local WebSocket server to talk to the CLI?
 
 No.
