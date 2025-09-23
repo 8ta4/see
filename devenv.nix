@@ -36,13 +36,13 @@
     echo hello from $GREET
   '';
   scripts.hs.exec = ''
-    cd hs && ghcid -c 'stack ghci' -r -s ":set args $@"
+    cd "$DEVENV_ROOT/hs" && ghcid -c 'stack ghci' -r -s ":set args $@"
   '';
   scripts.see.exec = ''
-    cd hs && stack run -- "$@"
+    cd "$DEVENV_ROOT/hs" && stack run -- "$@"
   '';
   scripts.cljs.exec = ''
-    cd cljs/public && web-ext run
+    cd "$DEVENV_ROOT/cljs/public" && web-ext run
   '';
 
   enterShell = ''
@@ -50,7 +50,7 @@
     git --version
     brew bundle
     export PATH="$DEVENV_ROOT/cljs/node_modules/.bin:$PATH"
-    cd cljs && npm i
+    cd "$DEVENV_ROOT/cljs" && npm i
   '';
 
   # https://devenv.sh/tasks/
