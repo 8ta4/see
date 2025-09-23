@@ -34,10 +34,10 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
-  scripts.watch.exec = ''
+  scripts.run.exec = ''
     cd hs && ghcid -c='stack ghci' -r
   '';
-  scripts.run.exec = ''
+  scripts.see.exec = ''
     cd hs && stack run -- "$@"
   '';
 
