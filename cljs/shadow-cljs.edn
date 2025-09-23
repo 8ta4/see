@@ -8,5 +8,7 @@
  :builds
  {:app {:modules {:app {:init-fn app/init}}
         :output-dir "public/js"
+; Without :runtime :custom, the browser console will show repeated errors like:
+; "Firefox can’t establish a connection to the server at wss://..."
         :runtime :custom
         :target :esm}}}
