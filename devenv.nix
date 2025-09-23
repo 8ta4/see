@@ -12,6 +12,7 @@
 
   # https://devenv.sh/packages/
   packages = [
+    pkgs.ghcid
     pkgs.git
     pkgs.gitleaks
   ];
