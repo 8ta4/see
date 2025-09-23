@@ -14,6 +14,7 @@
   packages = [
     pkgs.git
     pkgs.gitleaks
+    pkgs.stack
   ];
 
   # https://devenv.sh/languages/
