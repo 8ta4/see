@@ -43,7 +43,7 @@
     cd "$DEVENV_ROOT/hs" && stack run -- "$@"
   '';
   scripts.cljs.exec = ''
-    cd "$DEVENV_ROOT/cljs/public" && web-ext run
+    cd "$DEVENV_ROOT/cljs/public" && web-ext run --devtools --pref devtools.toolbox.alwaysOnTop=false
   '';
 
   enterShell = ''
