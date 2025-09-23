@@ -35,7 +35,7 @@
     echo hello from $GREET
   '';
   scripts.run.exec = ''
-    cd hs && ghcid -c='stack ghci' -r
+    cd hs && ghcid -c 'stack ghci' -r
   '';
   scripts.see.exec = ''
     cd hs && stack run -- "$@"
