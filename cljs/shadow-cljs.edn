@@ -8,4 +8,6 @@
  []
 
  :builds
- {}}
+ {:app {:modules {:app {}}
+        :output-dir "public/js"
+        :target :esm}}}
