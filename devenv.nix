@@ -62,6 +62,7 @@
     };
     # https://github.com/NixOS/nixfmt/blob/2caa09642c3cde5985cf8d239ffc66094c344c57/README.md?plain=1#L168
     nixfmt-rfc-style.enable = true;
+    ormolu.enable = true;
     prettier.enable = true;
     # https://github.com/cachix/git-hooks.nix/issues/31#issuecomment-744657870
     trailing-whitespace = {
