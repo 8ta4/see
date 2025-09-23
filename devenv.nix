@@ -12,8 +12,10 @@
 
   # https://devenv.sh/packages/
   packages = [
+    pkgs.ghcid
     pkgs.git
     pkgs.gitleaks
+    pkgs.nodejs_24
   ];
 
   # https://devenv.sh/languages/
@@ -32,6 +34,12 @@
   # https://devenv.sh/scripts/
   scripts.hello.exec = ''
     echo hello from $GREET
+  '';
+  scripts.run.exec = ''
+    cd hs && ghcid -c 'stack ghci' -r -s ":set args $@"
+  '';
+  scripts.see.exec = ''
+    cd hs && stack run -- "$@"
   '';
 
   enterShell = ''
