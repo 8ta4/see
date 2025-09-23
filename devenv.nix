@@ -35,11 +35,14 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
-  scripts.run.exec = ''
+  scripts.hs.exec = ''
     cd hs && ghcid -c 'stack ghci' -r -s ":set args $@"
   '';
   scripts.see.exec = ''
     cd hs && stack run -- "$@"
+  '';
+  scripts.cljs.exec = ''
+    cd cljs/public && web-ext run
   '';
 
   enterShell = ''
