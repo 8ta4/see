@@ -48,7 +48,9 @@
   enterShell = ''
     hello
     git --version
+    brew bundle
     export PATH="$DEVENV_ROOT/cljs/node_modules/.bin:$PATH"
+    cd cljs && npm i
   '';
 
   # https://devenv.sh/tasks/
