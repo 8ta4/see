@@ -34,6 +34,9 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
+  scripts.run.exec = ''
+    ghcid -c='stack ghci' -r
+  '';
 
   enterShell = ''
     hello
