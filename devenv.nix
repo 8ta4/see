@@ -45,6 +45,7 @@
   enterShell = ''
     hello
     git --version
+    export PATH="$DEVENV_ROOT/cljs/node_modules/.bin:$PATH"
   '';
 
   # https://devenv.sh/tasks/
