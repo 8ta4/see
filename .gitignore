@@ -1,9 +1,15 @@
+# clj-kondo
+.clj-kondo
+
 # Devenv
 .devenv*
 devenv.local.nix
 
 # direnv
 .direnv
+
+# Language Server Protocol
+.lsp/.cache
 
 # pre-commit
 .pre-commit-config.yaml

@@ -20,6 +20,7 @@
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;
+  languages.clojure.enable = true;
   languages.haskell = {
     enable = true;
     stack.enable = true;
@@ -35,16 +36,22 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
-  scripts.run.exec = ''
-    cd hs && ghcid -c 'stack ghci' -r -s ":set args $@"
+  scripts.hs.exec = ''
+    cd "$DEVENV_ROOT/hs" && ghcid -c 'stack ghci' -r -s ":set args $@"
   '';
   scripts.see.exec = ''
-    cd hs && stack run -- "$@"
+    cd "$DEVENV_ROOT/hs" && stack run -- "$@"
+  '';
+  scripts.cljs.exec = ''
+    cd "$DEVENV_ROOT/cljs/public" && web-ext run --devtools --pref devtools.toolbox.alwaysOnTop=false
   '';
 
   enterShell = ''
     hello
     git --version
+    brew bundle
+    export PATH="$DEVENV_ROOT/cljs/node_modules/.bin:$PATH"
+    cd "$DEVENV_ROOT/cljs" && npm i
   '';
 
   # https://devenv.sh/tasks/
@@ -62,6 +69,7 @@
   # https://devenv.sh/git-hooks/
   # git-hooks.hooks.shellcheck.enable = true;
   git-hooks.hooks = {
+    cljfmt.enable = true;
     gitleaks = {
       enable = true;
       # https://github.com/gitleaks/gitleaks/blob/a82bc53d895f457897448637779383f607582c7c/.pre-commit-hooks.yaml#L4
