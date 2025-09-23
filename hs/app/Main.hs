@@ -7,4 +7,5 @@ import Relude
 main :: IO ()
 main = do
   url <- execParser $ info (strArgument mempty) mempty
+  putTextLn "Processing URL:"
   putTextLn url
