@@ -1,7 +1,10 @@
 module Main (main) where
 
-import Lib
+import Options.Applicative (execParser, strArgument)
+import Options.Applicative.Builder (info)
 import Relude
 
 main :: IO ()
-main = someFunc
+main = do
+  url <- execParser $ info (strArgument mempty) mempty
+  putTextLn url

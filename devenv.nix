@@ -38,7 +38,7 @@
     cd hs && ghcid -c='stack ghci' -r
   '';
   scripts.run.exec = ''
-    cd hs && stack run
+    cd hs && stack run -- "$@"
   '';
 
   enterShell = ''
