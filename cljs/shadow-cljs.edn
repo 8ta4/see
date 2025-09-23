@@ -8,4 +8,5 @@
  :builds
  {:app {:modules {:app {:init-fn app/init}}
         :output-dir "public/js"
+        :runtime :custom
         :target :esm}}}
