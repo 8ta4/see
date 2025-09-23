@@ -15,6 +15,7 @@
     pkgs.ghcid
     pkgs.git
     pkgs.gitleaks
+    pkgs.nodejs_24
   ];
 
   # https://devenv.sh/languages/
