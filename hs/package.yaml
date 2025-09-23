@@ -33,6 +33,38 @@ ghc-options:
   - -Wpartial-fields
   - -Wredundant-constraints
 
+# https://github.com/purescript/purescript/blob/9dd761a3805a0c04b90db915599c1c6d8a3bb68e/purescript.cabal#L91-L121
+default-extensions: BangPatterns
+  ConstraintKinds
+  DataKinds
+  DefaultSignatures
+  DeriveFunctor
+  DeriveFoldable
+  DeriveTraversable
+  DeriveGeneric
+  DerivingStrategies
+  DerivingVia
+  EmptyDataDecls
+  FlexibleContexts
+  FlexibleInstances
+  GeneralizedNewtypeDeriving
+  ImportQualifiedPost
+  KindSignatures
+  LambdaCase
+  MultiParamTypeClasses
+  NamedFieldPuns
+  NoImplicitPrelude
+  PatternGuards
+  PatternSynonyms
+  RankNTypes
+  RecordWildCards
+  OverloadedRecordDot
+  OverloadedStrings
+  ScopedTypeVariables
+  TupleSections
+  TypeFamilies
+  ViewPatterns
+
 library:
   source-dirs: src
 
