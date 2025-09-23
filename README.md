@@ -16,18 +16,12 @@ The goal is to see and be seen as human. There are no ifs, ands, or bots.
 
 1. Install [Homebrew](https://brew.sh/#install).
 
-1. Install [devenv](https://github.com/cachix/devenv/blob/0a1a32c2b68be15676304a489e86a2445815d93e/docs/getting-started.md#installation).
-
-1. Install [direnv](https://github.com/cachix/devenv/blob/0a1a32c2b68be15676304a489e86a2445815d93e/docs/automatic-shell-activation.md#installing-direnv).
-
 1. Open a terminal window.
 
 1. Run the following commands:
 
    ```sh
-   git clone git@github.com:8ta4/see.git
-   cd see
-   direnv allow
+   brew install 8ta4/see/see
    ```
 
 ## Usage
