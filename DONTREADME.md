@@ -12,7 +12,7 @@ No. Controlling a browser from the outside may leave a fingerprint. [`puppeteer-
 
 No. Connecting via the remote debugging port can leave a fingerprint.
 
-Instead, `see` talks to a companion Chrome extension. Since it runs in your day-to-day browser, requests use your fingerprint and look like normal browsing activity.
+Instead, `see` talks to a companion browser extension. Since it runs in your day-to-day browser, requests use your fingerprint and look like normal browsing activity.
 
 > Does `see` fake mouse movements?
 
