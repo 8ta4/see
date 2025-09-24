@@ -151,6 +151,7 @@ No. `see` doesn't scroll.
    cd see
    direnv allow
    ```
+
 The scripts are in the `devenv.nix` file.
 
 ## Architecture
