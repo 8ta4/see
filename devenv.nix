@@ -48,7 +48,7 @@
     cd "$DEVENV_ROOT/hs" && ghcid -c 'stack ghci' -r -s ":set args $@"
   '';
   scripts.release.exec = ''
-    cd "$DEVENV_ROOT/cljs" && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
+    cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
   '';
   scripts.see.exec = ''
     cd "$DEVENV_ROOT/hs" && stack run -- "$@"
