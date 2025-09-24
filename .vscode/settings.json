@@ -4,6 +4,7 @@
       "autoSelectForJackIn": true,
       "cljsType": "shadow-cljs",
       "menuSelections": {
+        "cljsDefaultBuild": ":app",
         "cljsLaunchBuilds": [":app"]
       },
       "name": "app",
