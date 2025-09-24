@@ -46,7 +46,7 @@
   scripts.cljs.exec = ''
     cd "$DEVENV_ROOT/cljs/public" && web-ext run --devtools \
     --pref devtools.toolbox.alwaysOnTop=false \
-    --pref extensions.webextensions.default-content-security-policy.v3="script-src 'self'"
+    --pref extensions.webextensions.default-content-security-policy.v3="script-src 'self';"
   '';
 
   enterShell = ''
