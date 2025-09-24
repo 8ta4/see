@@ -4,10 +4,10 @@
       "autoSelectForJackIn": true,
       "cljsType": "shadow-cljs",
       "menuSelections": {
-        "cljsDefaultBuild": ":app",
-        "cljsLaunchBuilds": [":app"]
+        "cljsDefaultBuild": ":background",
+        "cljsLaunchBuilds": [":background"]
       },
-      "name": "app",
+      "name": "background",
       "projectRootPath": ["cljs"],
       "projectType": "shadow-cljs"
     }

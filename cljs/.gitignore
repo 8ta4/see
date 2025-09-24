@@ -1,3 +1,8 @@
+# see
+release/*
+!release/manifest.json
+
+# shadow-cljs
 node_modules/
 public/js
 
