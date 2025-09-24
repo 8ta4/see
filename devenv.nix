@@ -42,11 +42,13 @@
   scripts.see.exec = ''
     cd "$DEVENV_ROOT/hs" && stack run -- "$@"
   '';
+  # https://github.com/mozilla-firefox/firefox/blob/6cd61ea1ff39887da8f4dc1080a96c01f0c70ef8/modules/libpref/init/all.js#L3155
   # https://github.com/mozilla-firefox/firefox/blob/6cd61ea1ff39887da8f4dc1080a96c01f0c70ef8/modules/libpref/init/all.js#L3157
   scripts.cljs.exec = ''
     cd "$DEVENV_ROOT/cljs/public" && web-ext run --devtools \
     --pref devtools.toolbox.alwaysOnTop=false \
-    --pref extensions.webextensions.default-content-security-policy.v3="script-src 'self';"
+    --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
+    --pref extensions.webextensions.default-content-security-policy.v3="script-src 'self' 'unsafe-eval';"
   '';
 
   enterShell = ''
