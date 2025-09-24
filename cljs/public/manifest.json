@@ -1,6 +1,6 @@
 {
   "background": {
-    "scripts": ["js/app.js"],
+    "scripts": ["js/background.js"],
     "type": "module"
   },
   "manifest_version": 3,

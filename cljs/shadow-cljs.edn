@@ -7,7 +7,7 @@
 
  :builds
  ; https://github.com/thheller/shadow-cljs/issues/902#:~:text=This%20fixed%20the,host%20false%7D
- {:app {:devtools {:use-document-host false}
-        :modules {:app {:init-fn app/init}}
-        :output-dir "public/js"
-        :target :esm}}}
+ {:background {:devtools {:use-document-host false}
+               :modules {:background {:init-fn background/init}}
+               :output-dir "public/js"
+               :target :esm}}}
