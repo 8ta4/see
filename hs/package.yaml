@@ -97,7 +97,7 @@ library:
   source-dirs: src
 
 executables:
-  hs-exe:
+  see:
     main: Main.hs
     source-dirs: app
     ghc-options:
