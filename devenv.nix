@@ -45,7 +45,7 @@
     echo hello from $GREET
   '';
   scripts.hs.exec = ''
-    cd "$DEVENV_ROOT/hs" && ghcid -c 'stack ghci' -r -s ":set args $@"
+    cd "$DEVENV_ROOT/hs" && ghcid -c 'stack ghci' -r -s ":set args $@" -W
   '';
   scripts.release.exec = ''
     cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
