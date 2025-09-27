@@ -115,6 +115,8 @@ executables:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
+      - aeson
+      - directory
       - filepath
       - optparse-applicative
 

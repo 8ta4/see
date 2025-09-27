@@ -3,7 +3,13 @@
     "scripts": ["js/background.js"],
     "type": "module"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@see"
+    }
+  },
   "manifest_version": 3,
   "name": "see",
+  "permissions": ["nativeMessaging"],
   "version": "0.1.0"
 }
