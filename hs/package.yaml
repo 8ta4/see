@@ -103,6 +103,10 @@ executables:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
+    dependencies:
+      - directory
+      - filepath
+      - network
   see:
     main: Main.hs
     source-dirs: app/see
@@ -111,6 +115,7 @@ executables:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
+      - filepath
       - optparse-applicative
 
 tests:
