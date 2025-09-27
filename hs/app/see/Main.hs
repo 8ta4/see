@@ -1,6 +1,7 @@
 module Main (main) where
 
 import Data.Aeson (KeyValue ((.=)), encode, object)
+import Data.Text qualified as T
 import Options.Applicative (execParser, strArgument)
 import Options.Applicative.Builder (info)
 import Relude
@@ -16,7 +17,15 @@ main = do
   homeDirectory <- getHomeDirectory
   let nativeMessagingHostsPath = homeDirectory </> "Library/Application Support/Mozilla/NativeMessagingHosts"
   createDirectoryIfMissing True nativeMessagingHostsPath
-  writeFileLBS (nativeMessagingHostsPath </> "see.json") $ encode $ object ["path" .= hostPath]
+  writeFileLBS (nativeMessagingHostsPath </> "host.json")
+    $ encode
+    $ object
+      [ "allowed_extensions" .= ["@see" :: T.Text],
+        "description" .= ("" :: T.Text),
+        "name" .= ("host" :: T.Text),
+        "path" .= hostPath,
+        "type" .= ("stdio" :: T.Text)
+      ]
   url <- execParser $ info (strArgument mempty) mempty
   putTextLn "Processing URL:"
   putTextLn url
