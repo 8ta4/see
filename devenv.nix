@@ -48,6 +48,7 @@
   # The warning can be triggered by GHCi's internal startup process, causing a crash if enabled from the start.
   # The fix is to disable the warning during initial GHCi loading in a .ghci file with `:set -Wno-prepositive-qualified-module`
   # and then use this ghcid command to re-enable it after ghcid has successfully started.
+  # The trade-off is that the initial module load is not checked for this specific warning.
   scripts.hs.exec = ''
     cd "$DEVENV_ROOT/hs" && ghcid -a --no-height-limit -r -s ":set args $@" -s ':set -Wprepositive-qualified-module' -W
   '';
