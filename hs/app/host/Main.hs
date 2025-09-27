@@ -1,7 +1,7 @@
 module Main (main) where
 
 import Control.Exception (catch, throwIO)
-import Network.Socket (Family (AF_UNIX), SockAddr (SockAddrUnix), SocketType (Stream), defaultProtocol, socket)
+import Network.Socket (Family (AF_UNIX), SockAddr (SockAddrUnix), SocketType (Stream), defaultProtocol, listen, socket)
 import Network.Socket.Address (bind)
 import Relude
 import System.Directory (getTemporaryDirectory, removeFile)
@@ -23,3 +23,4 @@ main = do
   let socketPath = temporaryDirectory </> "see.sock"
   removeIfExists socketPath
   bind unixSocket $ SockAddrUnix socketPath
+  listen unixSocket 1
