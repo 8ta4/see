@@ -13,7 +13,7 @@ removeIfExists :: FilePath -> IO ()
 removeIfExists fileName = removeFile fileName `catch` handleExists
   where
     handleExists e
-      | isDoesNotExistError e = return ()
+      | isDoesNotExistError e = pure ()
       | otherwise = throwIO e
 
 main :: IO ()
