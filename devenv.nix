@@ -47,9 +47,9 @@
   scripts.hs.exec = ''
     cd "$DEVENV_ROOT/hs" && ghcid -c 'stack ghci --ghci-options -fdiagnostics-color=always --ghci-options -ferror-spans' \
     --no-height-limit \
-     -r \
-     -s ":set args $@" \
-     -W
+    -r \
+    -s ":set args $@" \
+    -W
   '';
   scripts.release.exec = ''
     cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
