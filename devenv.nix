@@ -50,7 +50,13 @@
   # and then use this ghcid command to re-enable it after ghcid has successfully started.
   # The trade-off is that the initial module load is not checked for this specific warning.
   scripts.hs.exec = ''
-    cd "$DEVENV_ROOT/hs" && ghcid -a --no-height-limit -r -s ":set args $@" -s ':set -Wprepositive-qualified-module' --target hs:exe:see -W
+    cd "$DEVENV_ROOT/hs" && ghcid -a \
+    --no-height-limit \
+    -r \
+    -s ":set args $@" \
+    -s ':set -Wprepositive-qualified-module' \
+    --target hs:exe:see \
+    -W
   '';
   scripts.release.exec = ''
     cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
