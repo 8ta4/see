@@ -44,6 +44,9 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
+  scripts.host.exec = ''
+    cd "$DEVENV_ROOT/hs" && stack run host
+  '';
   # ':set -Wprepositive-qualified-module' command works around a ghcid crash related to the `-Wprepositive-qualified-module` warning.
   # The warning can be triggered by GHCi's internal startup process, causing a crash if enabled from the start.
   # The fix is to disable the warning during initial GHCi loading in a .ghci file with `:set -Wno-prepositive-qualified-module`
