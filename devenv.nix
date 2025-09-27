@@ -47,12 +47,26 @@
   scripts.host.exec = ''
     cd "$DEVENV_ROOT/hs" && stack run host
   '';
+  scripts.release.exec = ''
+    cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
+  '';
+  scripts.see.exec = ''
+    cd "$DEVENV_ROOT/hs" && stack run -- "$@" see
+  '';
   # ':set -Wprepositive-qualified-module' command works around a ghcid crash related to the `-Wprepositive-qualified-module` warning.
   # The warning can be triggered by GHCi's internal startup process, causing a crash if enabled from the start.
   # The fix is to disable the warning during initial GHCi loading in a .ghci file with `:set -Wno-prepositive-qualified-module`
   # and then use this ghcid command to re-enable it after ghcid has successfully started.
   # The trade-off is that the initial module load is not checked for this specific warning.
-  scripts.hs.exec = ''
+  scripts.watch-host.exec = ''
+    cd "$DEVENV_ROOT/hs" && ghcid -a \
+    --no-height-limit \
+    -r \
+    -s ':set -Wprepositive-qualified-module' \
+    --target hs:exe:host \
+    -W
+  '';
+  scripts.watch-see.exec = ''
     cd "$DEVENV_ROOT/hs" && ghcid -a \
     --no-height-limit \
     -r \
@@ -60,12 +74,6 @@
     -s ':set -Wprepositive-qualified-module' \
     --target hs:exe:see \
     -W
-  '';
-  scripts.release.exec = ''
-    cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
-  '';
-  scripts.see.exec = ''
-    cd "$DEVENV_ROOT/hs" && stack run -- "$@" see
   '';
 
   enterShell = ''
