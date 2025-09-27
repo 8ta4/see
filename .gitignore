@@ -1,3 +1,7 @@
+# https://github.com/BetterThanTomorrow/calva/blob/a8745a4ac1e9c9e749c99c69f854638b1bc678af/.gitignore#L82
+# Calva
+output.calva-repl
+
 # clj-kondo
 .clj-kondo
 
