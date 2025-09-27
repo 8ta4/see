@@ -9,8 +9,8 @@ import System.Directory (createDirectoryIfMissing, getHomeDirectory)
 import System.Environment (getExecutablePath)
 import System.FilePath (takeFileName, (</>))
 
-main :: IO ()
-main = do
+registerHost :: IO ()
+registerHost = do
   maybeDevenvRoot <- lookupEnv "DEVENV_ROOT"
   seePath <- getExecutablePath
   let hostPath = maybe seePath (</> "hs/bin") (guarded ((== "see") . takeFileName) =<< maybeDevenvRoot) </> "host"
@@ -26,6 +26,10 @@ main = do
         "path" .= hostPath,
         "type" .= ("stdio" :: T.Text)
       ]
+
+main :: IO ()
+main = do
+  registerHost
   url <- execParser $ info (strArgument mempty) mempty
   putTextLn "Processing URL:"
   putTextLn url
