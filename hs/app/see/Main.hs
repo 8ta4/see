@@ -2,6 +2,7 @@ module Main (main) where
 
 import Data.Aeson (KeyValue ((.=)), encode, object)
 import Data.Text qualified as T
+import Lib (createUnixSocket)
 import Options.Applicative (execParser, strArgument)
 import Options.Applicative.Builder (info)
 import Relude
@@ -29,7 +30,9 @@ registerHost = do
 
 main :: IO ()
 main = do
-  registerHost
   url <- execParser $ info (strArgument mempty) mempty
   putTextLn "Processing URL:"
   putTextLn url
+  registerHost
+  unixSocket <- createUnixSocket
+  pure ()

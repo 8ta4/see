@@ -94,6 +94,8 @@ default-extensions:
 
 library:
   source-dirs: src
+  dependencies:
+    - network
 
 executables:
   host:
@@ -106,6 +108,7 @@ executables:
     dependencies:
       - directory
       - filepath
+      - hs
       - network
   see:
     main: Main.hs
@@ -118,6 +121,7 @@ executables:
       - aeson
       - directory
       - filepath
+      - hs
       - optparse-applicative
 
 tests:
