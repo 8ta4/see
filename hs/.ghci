@@ -1,2 +1,6 @@
+-- ghcid crashes without this line.
+-- The project's `-Weverything` flag enables the `-Wprepositive-qualified-module` warning.
+-- GHCi can trigger this warning internally, and the resulting error causes ghcid to crash.
+-- This command disables only that specific warning to prevent the crash.
 :set -Wno-prepositive-qualified-module
 :load Main
