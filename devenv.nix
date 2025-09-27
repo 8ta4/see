@@ -62,7 +62,7 @@
     cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
   '';
   scripts.see.exec = ''
-    cd "$DEVENV_ROOT/hs" && stack run -- "$@"
+    cd "$DEVENV_ROOT/hs" && stack run -- "$@" see
   '';
 
   enterShell = ''
