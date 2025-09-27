@@ -1,7 +1,8 @@
 module Main (main) where
 
 import Control.Exception (catch, throwIO)
-import Network.Socket (Family (AF_UNIX), SockAddr (SockAddrUnix), SocketType (Stream), defaultProtocol, listen, socket)
+import Lib (createUnixSocket)
+import Network.Socket (SockAddr (SockAddrUnix), listen)
 import Network.Socket.Address (bind)
 import Relude
 import System.Directory (getTemporaryDirectory, removeFile)
@@ -18,8 +19,8 @@ removeIfExists fileName = removeFile fileName `catch` handleExists
 
 main :: IO ()
 main = do
+  unixSocket <- createUnixSocket
   temporaryDirectory <- getTemporaryDirectory
-  unixSocket <- socket AF_UNIX Stream defaultProtocol
   let socketPath = temporaryDirectory </> "see.sock"
   removeIfExists socketPath
   bind unixSocket $ SockAddrUnix socketPath

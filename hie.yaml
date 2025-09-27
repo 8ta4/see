@@ -7,3 +7,5 @@ cradle:
         component: "hs:exe:host"
       - path: "hs/app/see"
         component: "hs:exe:see"
+      - path: "hs/src"
+        component: "hs:lib"
