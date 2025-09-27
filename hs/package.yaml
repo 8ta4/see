@@ -103,6 +103,8 @@ executables:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
+    dependencies:
+      - directory
   see:
     main: Main.hs
     source-dirs: app/see
