@@ -105,6 +105,8 @@ executables:
       - -with-rtsopts=-N
     dependencies:
       - directory
+      - filepath
+      - network
   see:
     main: Main.hs
     source-dirs: app/see
