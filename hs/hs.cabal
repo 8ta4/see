@@ -69,6 +69,51 @@ library
     , relude
   default-language: Haskell2010
 
+executable host
+  main-is: Main.hs
+  other-modules:
+      Paths_hs
+  autogen-modules:
+      Paths_hs
+  hs-source-dirs:
+      app/host
+  default-extensions:
+      BangPatterns
+      ConstraintKinds
+      DataKinds
+      DefaultSignatures
+      DeriveFunctor
+      DeriveFoldable
+      DeriveTraversable
+      DeriveGeneric
+      DerivingStrategies
+      DerivingVia
+      EmptyDataDecls
+      FlexibleContexts
+      FlexibleInstances
+      GeneralizedNewtypeDeriving
+      ImportQualifiedPost
+      KindSignatures
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      NoImplicitPrelude
+      PatternGuards
+      PatternSynonyms
+      RankNTypes
+      RecordWildCards
+      OverloadedRecordDot
+      OverloadedStrings
+      ScopedTypeVariables
+      TupleSections
+      TypeFamilies
+      ViewPatterns
+  ghc-options: -Weverything -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-missed-specialisations -Wno-all-missed-specialisations -Wno-unsafe -Wno-safe -Wno-trustworthy-safe -Wno-inferred-safe-imports -Wno-missing-safe-haskell-mode -Wno-missing-local-signatures -Wno-monomorphism-restriction -Wno-missing-deriving-strategies -Wno-missing-export-lists -Wno-missing-kind-signatures -Wno-partial-fields -Wno-missing-role-annotations -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , relude
+  default-language: Haskell2010
+
 executable see
   main-is: Main.hs
   other-modules:
@@ -76,7 +121,7 @@ executable see
   autogen-modules:
       Paths_hs
   hs-source-dirs:
-      app
+      app/see
   default-extensions:
       BangPatterns
       ConstraintKinds

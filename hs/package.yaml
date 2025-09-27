@@ -96,9 +96,16 @@ library:
   source-dirs: src
 
 executables:
+  host:
+    main: Main.hs
+    source-dirs: app/host
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
   see:
     main: Main.hs
-    source-dirs: app
+    source-dirs: app/see
     ghc-options:
       - -threaded
       - -rtsopts
