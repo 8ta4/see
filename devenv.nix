@@ -47,6 +47,9 @@
   scripts.host.exec = ''
     cd "$DEVENV_ROOT/hs" && stack run host
   '';
+  scripts.install.exec = ''
+    cd "$DEVENV_ROOT/hs" && stack install
+  '';
   scripts.release.exec = ''
     cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
   '';
