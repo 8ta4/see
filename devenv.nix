@@ -44,8 +44,12 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
+  # ':set -Wprepositive-qualified-module' command works around a ghcid crash related to the `-Wprepositive-qualified-module` warning.
+  # The warning can be triggered by GHCi's internal startup process, causing a crash if enabled from the start.
+  # The fix is to disable the warning during initial GHCi loading in a .ghci file with `:set -Wno-prepositive-qualified-module`
+  # and then use this ghcid command to re-enable it after ghcid has successfully started.
   scripts.hs.exec = ''
-    cd "$DEVENV_ROOT/hs" && ghcid -a --no-height-limit -r -s ":set args $@" -W
+    cd "$DEVENV_ROOT/hs" && ghcid -a --no-height-limit -r -s ":set args $@" -s ':set -Wprepositive-qualified-module' -W
   '';
   scripts.release.exec = ''
     cd "$DEVENV_ROOT/cljs" && rm -rf release/js && shadow-cljs release background --config-merge '{:output-dir "release/js"}'
