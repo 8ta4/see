@@ -115,6 +115,7 @@ executables:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
+      - filepath
       - optparse-applicative
 
 tests:
