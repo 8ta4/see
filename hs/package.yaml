@@ -29,6 +29,10 @@ dependencies:
   - relude
 
 ghc-options:
+  # https://github.com/commercialhaskell/stack-templates/blob/6c4ca807086556e2b12dfa4917195849e3321d26/new-template.hsfiles#L45-L47
+  - -threaded
+  - -rtsopts
+  - -with-rtsopts=-N
   # https://github.com/purescript/purescript/blob/9dd761a3805a0c04b90db915599c1c6d8a3bb68e/purescript.cabal#L57-L89
   # This list taken from https://medium.com/mercury-bank/enable-all-the-warnings-a0517bc081c3
   # Enable all warnings with - -Weverything, then disable the ones we don’t care about
@@ -101,23 +105,11 @@ executables:
   host:
     main: Host
     source-dirs: app
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
   see:
     main: See
     source-dirs: app
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
 
 tests:
   test:
     main: Spec.hs
     source-dirs: test
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
