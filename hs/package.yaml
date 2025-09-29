@@ -20,10 +20,19 @@ extra-source-files:
 description: Please see the README on GitHub at <https://github.com/githubuser/hs#readme>
 
 dependencies:
+  - aeson
   - base >= 4.7 && < 5
+  - directory
+  - filepath
+  - network
+  - optparse-applicative
   - relude
 
 ghc-options:
+  # https://github.com/commercialhaskell/stack-templates/blob/6c4ca807086556e2b12dfa4917195849e3321d26/new-template.hsfiles#L45-L47
+  - -threaded
+  - -rtsopts
+  - -with-rtsopts=-N
   # https://github.com/purescript/purescript/blob/9dd761a3805a0c04b90db915599c1c6d8a3bb68e/purescript.cabal#L57-L89
   # This list taken from https://medium.com/mercury-bank/enable-all-the-warnings-a0517bc081c3
   # Enable all warnings with - -Weverything, then disable the ones we don’t care about
@@ -92,45 +101,24 @@ default-extensions:
   - TypeFamilies
   - ViewPatterns
 
-library:
-  source-dirs: src
-  dependencies:
-    - network
+source-dirs: app
 
+# We avoid using a library component to work around two Haskell Language Server (HLS)
+# issues that arise with multi-component projects:
+# 1. Cross-component refactoring: Renaming an exported identifier in the library
+#    component does not automatically update its usages in the executable component.
+# 2. Stale information: HLS does not reflect changes made in the library component
+#    within the executable component until the library is recompiled and HLS is
+#    restarted.
+# By defining all modules under a single component, we ensure that HLS can track
+# changes and perform refactoring correctly across the entire codebase.
 executables:
   host:
-    main: Main.hs
-    source-dirs: app/host
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
-    dependencies:
-      - directory
-      - filepath
-      - hs
-      - network
+    main: Host
   see:
-    main: Main.hs
-    source-dirs: app/see
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
-    dependencies:
-      - aeson
-      - directory
-      - filepath
-      - hs
-      - optparse-applicative
+    main: See
 
 tests:
-  hs-test:
+  test:
     main: Spec.hs
     source-dirs: test
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
-    dependencies:
-      - hs
