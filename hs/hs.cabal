@@ -131,10 +131,14 @@ test-suite test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Host
+      Lib
+      See
       Paths_hs
   autogen-modules:
       Paths_hs
   hs-source-dirs:
+      app
       test
   default-extensions:
       BangPatterns

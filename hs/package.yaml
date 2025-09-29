@@ -101,13 +101,13 @@ default-extensions:
   - TypeFamilies
   - ViewPatterns
 
+source-dirs: app
+
 executables:
   host:
     main: Host
-    source-dirs: app
   see:
     main: See
-    source-dirs: app
 
 tests:
   test:
