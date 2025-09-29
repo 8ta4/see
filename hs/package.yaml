@@ -121,5 +121,3 @@ tests:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
-    dependencies:
-      - hs

@@ -173,7 +173,6 @@ test-suite hs-test
     , base >=4.7 && <5
     , directory
     , filepath
-    , hs
     , network
     , optparse-applicative
     , relude
