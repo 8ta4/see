@@ -103,6 +103,15 @@ default-extensions:
 
 source-dirs: app
 
+# We avoid using a library component to work around two Haskell Language Server (HLS)
+# issues that arise with multi-component projects:
+# 1. Cross-component refactoring: Renaming an exported identifier in the library
+#    component does not automatically update its usages in the executable component.
+# 2. Stale information: HLS does not reflect changes made in the library component
+#    within the executable component until the library is recompiled and HLS is
+#    restarted.
+# By defining all modules under a single component, we ensure that HLS can track
+# changes and perform refactoring correctly across the entire codebase.
 executables:
   host:
     main: Host
