@@ -2,7 +2,7 @@ module See (main) where
 
 import Data.Aeson (KeyValue ((.=)), encode, object)
 import Data.Text qualified as T
-import Lib (createUnixSocket)
+import Lib (createUnixSocket, getSocketPath)
 import Options.Applicative (execParser, strArgument)
 import Options.Applicative.Builder (info)
 import Relude
@@ -35,4 +35,5 @@ main = do
   putTextLn url
   registerHost
   unixSocket <- createUnixSocket
+  socketPath <- getSocketPath
   pure ()

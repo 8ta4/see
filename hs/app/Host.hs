@@ -1,12 +1,11 @@
 module Host (main) where
 
 import Control.Exception (catch, throwIO)
-import Lib (createUnixSocket)
+import Lib (createUnixSocket, getSocketPath)
 import Network.Socket (SockAddr (SockAddrUnix), listen)
 import Network.Socket.Address (bind)
 import Relude
-import System.Directory (getTemporaryDirectory, removeFile)
-import System.FilePath ((</>))
+import System.Directory (removeFile)
 import System.IO.Error (isDoesNotExistError)
 
 -- https://stackoverflow.com/a/8502391
@@ -20,8 +19,7 @@ removeIfExists fileName = removeFile fileName `catch` handleExists
 main :: IO ()
 main = do
   unixSocket <- createUnixSocket
-  temporaryDirectory <- getTemporaryDirectory
-  let socketPath = temporaryDirectory </> "see.sock"
+  socketPath <- getSocketPath
   removeIfExists socketPath
   bind unixSocket $ SockAddrUnix socketPath
   listen unixSocket 1
