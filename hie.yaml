@@ -3,9 +3,5 @@ cradle:
   stack:
     stackYaml: "hs/stack.yaml"
     components:
-      - path: "hs/app/host"
-        component: "hs:exe:host"
-      - path: "hs/app/see"
+      - path: "hs/app"
         component: "hs:exe:see"
-      - path: "hs/src"
-        component: "hs:lib"

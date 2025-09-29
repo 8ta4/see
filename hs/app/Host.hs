@@ -1,4 +1,4 @@
-module Main (main) where
+module Host (main) where
 
 import Control.Exception (catch, throwIO)
 import Lib (createUnixSocket)

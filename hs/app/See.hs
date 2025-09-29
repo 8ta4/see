@@ -1,4 +1,4 @@
-module Main (main) where
+module See (main) where
 
 import Data.Aeson (KeyValue ((.=)), encode, object)
 import Data.Text qualified as T
