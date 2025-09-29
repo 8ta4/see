@@ -3,6 +3,7 @@ module See (main) where
 import Data.Aeson (KeyValue ((.=)), encode, object)
 import Data.Text qualified as T
 import Lib (createUnixSocket, getSocketPath)
+import Network.Socket (SockAddr (SockAddrUnix), connect)
 import Options.Applicative (execParser, strArgument)
 import Options.Applicative.Builder (info)
 import Relude
@@ -36,4 +37,4 @@ main = do
   registerHost
   unixSocket <- createUnixSocket
   socketPath <- getSocketPath
-  pure ()
+  connect unixSocket $ SockAddrUnix socketPath
