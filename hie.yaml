@@ -6,4 +6,4 @@ cradle:
       - path: "hs/app"
         component: "hs:exe:see"
       - path: "hs/test"
-        component: "hs:test:hs-test"
+        component: "hs:test:test"

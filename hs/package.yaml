@@ -114,7 +114,7 @@ executables:
       - -with-rtsopts=-N
 
 tests:
-  hs-test:
+  test:
     main: Spec.hs
     source-dirs: test
     ghc-options:
