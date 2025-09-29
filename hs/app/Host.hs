@@ -1,9 +1,10 @@
 module Host (main) where
 
-import Control.Exception (catch, throwIO)
+import Control.Exception (bracket, catch, throwIO)
 import Lib (createUnixSocket, getSocketPath)
-import Network.Socket (SockAddr (SockAddrUnix), listen)
+import Network.Socket (SockAddr (SockAddrUnix), Socket, accept, close, listen)
 import Network.Socket.Address (bind)
+import Network.Socket.ByteString.Lazy (getContents)
 import Relude
 import System.Directory (removeFile)
 import System.IO.Error (isDoesNotExistError)
@@ -16,6 +17,10 @@ removeIfExists fileName = removeFile fileName `catch` handleExists
       | isDoesNotExistError e = pure ()
       | otherwise = throwIO e
 
+serveClient :: Socket -> IO ()
+serveClient socket = do
+  void $ getContents socket
+
 main :: IO ()
 main = do
   unixSocket <- createUnixSocket
@@ -23,3 +28,4 @@ main = do
   removeIfExists socketPath
   bind unixSocket $ SockAddrUnix socketPath
   listen unixSocket 1
+  bracket (fst <$> accept unixSocket) close serveClient
