@@ -1,7 +1,6 @@
 module See (main) where
 
 import Data.Aeson (KeyValue ((.=)), encode, object)
-import Data.Text qualified as T
 import Lib (createUnixSocket, getSocketPath)
 import Network.Socket (SockAddr (SockAddrUnix), connect)
 import Options.Applicative (execParser, helper, strArgument)
@@ -22,11 +21,11 @@ registerHost = do
   writeFileLBS (nativeMessagingHostsPath </> "host.json")
     $ encode
     $ object
-      [ "allowed_extensions" .= ["@see" :: T.Text],
-        "description" .= ("" :: T.Text),
-        "name" .= ("host" :: T.Text),
+      [ "allowed_extensions" .= ["@see" :: Text],
+        "description" .= ("" :: Text),
+        "name" .= ("host" :: Text),
         "path" .= hostPath,
-        "type" .= ("stdio" :: T.Text)
+        "type" .= ("stdio" :: Text)
       ]
 
 main :: IO ()
