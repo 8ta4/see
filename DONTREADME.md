@@ -56,7 +56,7 @@ No. That's your job. You click accept once, and `see` uses your session. It's th
 
 > Does this tool wait for the page to load?
 
-Yes. It'll grab the text as soon as one of two things happens:
+Yes. It waits for one of two conditions to be met before trying to grab the text:
 
 - Two consecutive screenshots become identical while the browser's `readyState` is `complete`.
 
@@ -109,6 +109,10 @@ No. `textContent` It has two problems:
 - "[`textContent` returns every element in the node.](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#:~:text=textContent%20returns%20every%20element%20in%20the%20node.)" So it'll happily give you text from elements that are hidden.
 
 That's why the tool returns the `document.title` and `document.body.innerText` as a single block of text. This saves tokens for a large language model.
+
+> Can `see` grab text from a page reached via redirect?
+
+Yes. `see` tries to grab the text as soon as one of the loading conditions is met, whether the page was reached via a redirect or not.
 
 > Does `see` exit with an error on a 404?
 
