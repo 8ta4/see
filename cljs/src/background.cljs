@@ -4,8 +4,8 @@
   (js/browser.runtime.connectNative "host"))
 
 (port.onMessage.addListener (fn [message]
-                              (println "Message from host:")
-                              (println message)))
+                              (js/console.log "Message from host:")
+                              (js/console.log message)))
 
 (defn init []
-  (println "Hello, World!"))
+  (js/console.log "Hello, World!"))
