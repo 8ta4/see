@@ -22,6 +22,7 @@ serveClient :: Socket -> IO ()
 serveClient socket = do
   contents <- getContents socket
   hPut stdout contents
+  hFlush stdout
 
 main :: IO ()
 main = do
