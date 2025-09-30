@@ -3,9 +3,12 @@
 (defonce port
   (js/chrome.runtime.connectNative "host"))
 
-(port.onMessage.addListener (fn [message]
-                              (js/console.log "Message from host:")
-                              (js/console.log message)))
+(defn handle-host
+  [message]
+  (js/console.log "Message from host:")
+  (js/console.log message))
+
+(port.onMessage.addListener handle-host)
 
 (defn init []
   (js/console.log "Hello, World!"))
