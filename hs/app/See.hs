@@ -1,11 +1,15 @@
 module See (main) where
 
 import Data.Aeson (KeyValue ((.=)), encode, object)
+import Data.Binary.Put (putWord32le, runPut)
+import Data.ByteString.Lazy (LazyByteString)
+import Data.MonoTraversable.Unprefixed
 import Lib (createUnixSocket, getSocketPath)
 import Network.Socket (SockAddr (SockAddrUnix), connect)
+import Network.Socket.ByteString.Lazy (sendAll)
 import Options.Applicative (execParser, helper, strArgument)
 import Options.Applicative.Builder (info)
-import Relude
+import Relude hiding (length)
 import System.Directory (createDirectoryIfMissing, getHomeDirectory)
 import System.Environment (getExecutablePath)
 import System.FilePath (takeFileName, (</>))
@@ -28,6 +32,9 @@ registerHost = do
         "type" .= ("stdio" :: Text)
       ]
 
+encodeNativeMessage :: Text -> LazyByteString
+encodeNativeMessage = uncurry (<>) <$> (runPut <$> putWord32le <$> fromIntegral <$> length <$> encode &&& encode)
+
 main :: IO ()
 main = do
   url <- execParser $ info (strArgument mempty <**> helper) mempty
@@ -37,3 +44,4 @@ main = do
   unixSocket <- createUnixSocket
   socketPath <- getSocketPath
   connect unixSocket $ SockAddrUnix socketPath
+  sendAll unixSocket $ encodeNativeMessage url
