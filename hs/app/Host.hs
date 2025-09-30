@@ -1,6 +1,7 @@
 module Host (main) where
 
 import Control.Exception (bracket, catch, throwIO)
+import Data.ByteString.Lazy (hPut)
 import Lib (createUnixSocket, getSocketPath)
 import Network.Socket (SockAddr (SockAddrUnix), Socket, accept, close, listen)
 import Network.Socket.Address (bind)
@@ -19,7 +20,8 @@ removeIfExists fileName = removeFile fileName `catch` handleExists
 
 serveClient :: Socket -> IO ()
 serveClient socket = do
-  void $ getContents socket
+  contents <- getContents socket
+  hPut stdout contents
 
 main :: IO ()
 main = do

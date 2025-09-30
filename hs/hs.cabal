@@ -68,8 +68,10 @@ executable host
   build-depends:
       aeson
     , base >=4.7 && <5
+    , binary
     , directory
     , filepath
+    , mono-traversable
     , network
     , optparse-applicative
     , relude
@@ -120,8 +122,10 @@ executable see
   build-depends:
       aeson
     , base >=4.7 && <5
+    , binary
     , directory
     , filepath
+    , mono-traversable
     , network
     , optparse-applicative
     , relude
@@ -175,8 +179,10 @@ test-suite test
   build-depends:
       aeson
     , base >=4.7 && <5
+    , binary
     , directory
     , filepath
+    , mono-traversable
     , network
     , optparse-applicative
     , relude
