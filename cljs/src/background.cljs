@@ -1,12 +1,15 @@
 (ns background)
 
 (defonce port
-  (js/browser.runtime.connectNative "host"))
+  (js/chrome.runtime.connectNative "host"))
 
-(port.onMessage.addListener
- (fn [message]
-   (println "Message from host:")
-   (println message)))
+(defn handle-host
+  [message]
+  (js/console.log "Message from host:")
+  (js/console.log message)
+  (js/chrome.tabs.create (clj->js {})))
+
+(port.onMessage.addListener handle-host)
 
 (defn init []
-  (println "Hello, World!"))
+  (js/console.log "Hello, World!"))
