@@ -28,4 +28,4 @@ jobs:
         run: devenv shell hello
       - run: devenv shell install
       - run: devenv shell release
-      - run: devenv shell see https://example.com
+      - run: devenv shell see -h
