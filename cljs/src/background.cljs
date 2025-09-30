@@ -1,7 +1,7 @@
 (ns background)
 
 (defonce port
-  (js/browser.runtime.connectNative "host"))
+  (js/chrome.runtime.connectNative "host"))
 
 (port.onMessage.addListener (fn [message]
                               (js/console.log "Message from host:")
