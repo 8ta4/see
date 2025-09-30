@@ -6,7 +6,8 @@
 (defn handle-host
   [message]
   (js/console.log "Message from host:")
-  (js/console.log message))
+  (js/console.log message)
+  (js/chrome.tabs.create (clj->js {})))
 
 (port.onMessage.addListener handle-host)
 
