@@ -58,7 +58,7 @@ No. That's your job. You click accept once, and `see` uses your session. It's th
 
 Yes. It'll grab the text as soon as one of two things happens:
 
-- Two consecutive screenshots become identical after the browser's `readyState` is `complete`.
+- Two consecutive screenshots become identical while the browser's `readyState` is `complete`.
 
 - 10 seconds go by since the navigation started.
 
