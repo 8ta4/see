@@ -16,7 +16,9 @@
   (js/console.log "Message from host:")
   (js/console.log message)
   (js-await [tab (js/chrome.tabs.create (clj->js {}))]
-            (js/chrome.tabs.onUpdated.addListener handle-tab-update (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))))
+            (js/chrome.tabs.onUpdated.addListener handle-tab-update
+                                                  (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))
+            (js/chrome.tabs.update (:id (js->clj tab :keywordize-keys true)) (clj->js {:url message}))))
 
 (port.onMessage.addListener handle-host)
 
