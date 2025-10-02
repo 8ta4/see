@@ -3,7 +3,7 @@
  ["src"]
 
  :dependencies
- []
+ [[com.rpl/specter "1.1.6"]]
 
  :builds
  ; https://github.com/thheller/shadow-cljs/issues/902#:~:text=This%20fixed%20the,host%20false%7D
