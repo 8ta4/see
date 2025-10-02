@@ -1,15 +1,16 @@
 (ns background
-  (:require [shadow.cljs.modern :refer [js-await]]))
+  (:require [shadow.cljs.modern :refer [js-await]]
+            [com.rpl.specter :refer [ATOM setval]]))
 
 (defonce port
   (js/chrome.runtime.connectNative "host"))
 
 (def state
-  (atom nil))
+  (atom {}))
 
 (defn handle-tab-update
   [_ _ tab]
-  (reset! state (:status (js->clj tab :keywordize-keys true))))
+  (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state))
 
 (defn handle-host
   [url]
@@ -21,6 +22,11 @@
             (js/chrome.tabs.update (:id (js->clj tab :keywordize-keys true)) (clj->js {:url url}))))
 
 (port.onMessage.addListener handle-host)
+
+(defn take-screenshot
+  []
+  (js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
+            (setval [ATOM :screenshot] screenshot state)))
 
 (defn init []
   (js/console.log "Hello, World!"))
