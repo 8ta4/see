@@ -12,6 +12,11 @@
   [_ _ tab]
   (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state))
 
+(defn take-screenshot
+  []
+  (js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
+            (setval [ATOM :screenshot] screenshot state)))
+
 (defn handle-host
   [url]
   (js/console.log "Message from host:")
@@ -19,14 +24,10 @@
   (js-await [tab (js/chrome.tabs.create (clj->js {}))]
             (js/chrome.tabs.onUpdated.addListener handle-tab-update
                                                   (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))
+            (js/setInterval take-screenshot 100)
             (js/chrome.tabs.update (:id (js->clj tab :keywordize-keys true)) (clj->js {:url url}))))
 
 (port.onMessage.addListener handle-host)
-
-(defn take-screenshot
-  []
-  (js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
-            (setval [ATOM :screenshot] screenshot state)))
 
 (defn init []
   (js/console.log "Hello, World!"))
