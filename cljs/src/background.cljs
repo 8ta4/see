@@ -1,5 +1,6 @@
 (ns background
-  (:require [com.rpl.specter :refer [ATOM setval]]
+  (:require ["/content.js" :refer [getText]]
+            [com.rpl.specter :refer [ATOM setval]]
             [shadow.cljs.modern :refer [js-await]]))
 
 (defonce port
@@ -18,7 +19,8 @@
              (if (and (= "complete" (:status @state))
                       (= screenshot (:screenshot @state)))
                (do (js/console.log "Screenshot didn't change")
-                   (js/chrome.scripting.executeScript (clj->js {:target {:tabId id}}))
+                   (js/chrome.scripting.executeScript (clj->js {:func getText
+                                                                :target {:tabId id}}))
                    ((:stop @state))
                    (setval ATOM {} state))
                (setval [ATOM :screenshot] screenshot state))))
@@ -39,4 +41,5 @@
 (port.onMessage.addListener handle-host)
 
 (defn init []
+  (handle-host "https://example.com")
   (js/console.log "Hello, World!"))
