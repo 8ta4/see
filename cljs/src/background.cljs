@@ -15,7 +15,11 @@
 (defn take-screenshot
   []
   (js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
-            (setval [ATOM :screenshot] screenshot state)))
+            (if (and (= "complete" (:status @state))
+                     (= screenshot (:screenshot @state)))
+              (do ((:stop @state))
+                  (setval ATOM {} state))
+              (setval [ATOM :screenshot] screenshot state))))
 
 (defn handle-host
   [url]
