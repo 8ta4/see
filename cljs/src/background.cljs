@@ -17,7 +17,8 @@
   (js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
             (if (and (= "complete" (:status @state))
                      (= screenshot (:screenshot @state)))
-              (do ((:stop @state))
+              (do (js/console.log "Screenshot didn't change")
+                  ((:stop @state))
                   (setval ATOM {} state))
               (setval [ATOM :screenshot] screenshot state))))
 
