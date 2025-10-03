@@ -41,5 +41,4 @@
 (port.onMessage.addListener handle-host)
 
 (defn init []
-  (handle-host "https://example.com")
   (js/console.log "Hello, World!"))
