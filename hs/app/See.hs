@@ -39,8 +39,6 @@ encodeNativeMessage = uncurry (<>) <$> (runPut <$> putWord32le <$> fromIntegral 
 main :: IO ()
 main = do
   url <- execParser $ info (strArgument mempty <**> helper) mempty
-  putTextLn "Processing URL:"
-  putTextLn url
   registerHost
   unixSocket <- createUnixSocket
   socketPath <- getSocketPath
