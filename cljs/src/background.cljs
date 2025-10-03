@@ -1,6 +1,6 @@
 (ns background
-  (:require [shadow.cljs.modern :refer [js-await]]
-            [com.rpl.specter :refer [ATOM setval]]))
+  (:require [com.rpl.specter :refer [ATOM setval]]
+            [shadow.cljs.modern :refer [js-await]]))
 
 (defonce port
   (js/chrome.runtime.connectNative "host"))
