@@ -27,7 +27,6 @@ serveClient socket = do
   prefix <- hGet stdin 4
   message <- hGet stdin $ fromIntegral $ runGet getWord32le prefix
   sendAll socket message
-  pure ()
 
 main :: IO ()
 main = do
