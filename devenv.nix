@@ -16,6 +16,7 @@
     pkgs.git
     pkgs.gitleaks
     pkgs.nodejs_24
+    pkgs.python313Packages.pre-commit-hooks
   ];
 
   # https://devenv.sh/languages/
@@ -103,6 +104,10 @@
   # git-hooks.hooks.shellcheck.enable = true;
   git-hooks.hooks = {
     cljfmt.enable = true;
+    eslint = {
+      enable = true;
+      entry = "eslint -c cljs/eslint.config.mjs --fix cljs/src";
+    };
     gitleaks = {
       enable = true;
       # https://github.com/gitleaks/gitleaks/blob/a82bc53d895f457897448637779383f607582c7c/.pre-commit-hooks.yaml#L4
@@ -118,7 +123,7 @@
     trailing-whitespace = {
       enable = true;
       # https://github.com/pre-commit/pre-commit-hooks/blob/5c514f85cc9be49324a6e3664e891ac2fc8a8609/.pre-commit-hooks.yaml#L205-L212
-      entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/trailing-whitespace-fixer";
+      entry = "trailing-whitespace-fixer";
       types = [ "text" ];
     };
   };

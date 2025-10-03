@@ -19,8 +19,9 @@
              (if (and (= "complete" (:status @state))
                       (= screenshot (:screenshot @state)))
                (do (js/console.log "Screenshot didn't change")
-                   (js/chrome.scripting.executeScript (clj->js {:func getText
-                                                                :target {:tabId id}}))
+                   (js-await [results (js/chrome.scripting.executeScript (clj->js {:func getText
+                                                                                   :target {:tabId id}}))]
+                             (:result (first (js->clj results :keywordize-keys true))))
                    ((:stop @state))
                    (setval ATOM {} state))
                (setval [ATOM :screenshot] screenshot state))))
@@ -41,5 +42,4 @@
 (port.onMessage.addListener handle-host)
 
 (defn init []
-  (handle-host "https://example.com")
   (js/console.log "Hello, World!"))
