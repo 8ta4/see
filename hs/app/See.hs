@@ -1,6 +1,6 @@
 module See (main) where
 
-import Data.Aeson (KeyValue ((.=)), encode, object)
+import Data.Aeson (KeyValue ((.=)), decode, encode, object)
 import Data.Binary.Put (putWord32le, runPut)
 import Data.ByteString.Lazy (LazyByteString)
 import Data.MonoTraversable.Unprefixed
@@ -10,6 +10,7 @@ import Network.Socket.ByteString.Lazy (getContents, sendAll)
 import Options.Applicative (execParser, helper, strArgument)
 import Options.Applicative.Builder (info)
 import Relude hiding (length)
+import Relude.Unsafe (fromJust)
 import System.Directory (createDirectoryIfMissing, getHomeDirectory)
 import System.Environment (getExecutablePath)
 import System.FilePath (takeFileName, (</>))
@@ -46,4 +47,4 @@ main = do
   sendAll unixSocket $ encodeNativeMessage url
   shutdown unixSocket ShutdownSend
   contents <- getContents unixSocket
-  pure ()
+  putTextLn $ fromJust $ decode contents
