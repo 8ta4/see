@@ -34,7 +34,7 @@ registerHost = do
 
 -- https://github.com/mdn/content/blob/4173f52767fe81e1dfe7ae373936a56b5abb50ea/files/en-us/mozilla/add-ons/webextensions/native_messaging/index.md?plain=1#L235
 encodeNativeMessage :: Text -> LazyByteString
-encodeNativeMessage = uncurry (<>) <$> (runPut <$> putWord32le <$> fromIntegral <$> length <$> encode &&& encode)
+encodeNativeMessage = uncurry (<>) <$> (runPut <$> putWord32le <$> fromIntegral <$> length &&& id) <$> encode
 
 main :: IO ()
 main = do
