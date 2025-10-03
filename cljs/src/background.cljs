@@ -1,5 +1,6 @@
 (ns background
-  (:require [com.rpl.specter :refer [ATOM setval]]
+  (:require ["/content.js" :refer [getText]]
+            [com.rpl.specter :refer [ATOM setval]]
             [shadow.cljs.modern :refer [js-await]]))
 
 (defonce port
@@ -13,14 +14,16 @@
   (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state))
 
 (defn take-screenshot
-  []
-  (js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
-            (if (and (= "complete" (:status @state))
-                     (= screenshot (:screenshot @state)))
-              (do (js/console.log "Screenshot didn't change")
-                  ((:stop @state))
-                  (setval ATOM {} state))
-              (setval [ATOM :screenshot] screenshot state))))
+  [id]
+  #(js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
+             (if (and (= "complete" (:status @state))
+                      (= screenshot (:screenshot @state)))
+               (do (js/console.log "Screenshot didn't change")
+                   (js/chrome.scripting.executeScript (clj->js {:func getText
+                                                                :target {:tabId id}}))
+                   ((:stop @state))
+                   (setval ATOM {} state))
+               (setval [ATOM :screenshot] screenshot state))))
 
 (defn handle-host
   [url]
@@ -31,11 +34,12 @@
                                                   (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))
             (setval [ATOM :stop]
                     (juxt #(js/chrome.tabs.onUpdated.removeListener handle-tab-update)
-                          (partial js/clearInterval (js/setInterval take-screenshot 100)))
+                          (partial js/clearInterval (js/setInterval (take-screenshot (:id (js->clj tab :keywordize-keys true))) 100)))
                     state)
             (js/chrome.tabs.update (:id (js->clj tab :keywordize-keys true)) (clj->js {:url url}))))
 
 (port.onMessage.addListener handle-host)
 
 (defn init []
+  (handle-host "https://example.com")
   (js/console.log "Hello, World!"))
