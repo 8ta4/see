@@ -1,6 +1,6 @@
 (ns background
-  (:require [shadow.cljs.modern :refer [js-await]]
-            [com.rpl.specter :refer [ATOM setval]]))
+  (:require [com.rpl.specter :refer [ATOM setval]]
+            [shadow.cljs.modern :refer [js-await]]))
 
 (defonce port
   (js/chrome.runtime.connectNative "host"))
@@ -15,7 +15,12 @@
 (defn take-screenshot
   []
   (js-await [screenshot (js/chrome.tabs.captureVisibleTab)]
-            (setval [ATOM :screenshot] screenshot state)))
+            (if (and (= "complete" (:status @state))
+                     (= screenshot (:screenshot @state)))
+              (do (js/console.log "Screenshot didn't change")
+                  ((:stop @state))
+                  (setval ATOM {} state))
+              (setval [ATOM :screenshot] screenshot state))))
 
 (defn handle-host
   [url]
@@ -24,7 +29,10 @@
   (js-await [tab (js/chrome.tabs.create (clj->js {}))]
             (js/chrome.tabs.onUpdated.addListener handle-tab-update
                                                   (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))
-            (js/setInterval take-screenshot 100)
+            (setval [ATOM :stop]
+                    (juxt #(js/chrome.tabs.onUpdated.removeListener handle-tab-update)
+                          (partial js/clearInterval (js/setInterval take-screenshot 100)))
+                    state)
             (js/chrome.tabs.update (:id (js->clj tab :keywordize-keys true)) (clj->js {:url url}))))
 
 (port.onMessage.addListener handle-host)
