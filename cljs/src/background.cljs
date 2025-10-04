@@ -1,5 +1,6 @@
 (ns background
   (:require ["/content.js" :refer [getText]]
+            ["@stdlib/random-base-lognormal" :as lognormal]
             [com.rpl.specter :refer [ATOM setval]]
             [shadow.cljs.modern :refer [js-await]]))
 
@@ -22,7 +23,8 @@
                  :result
                  port.postMessage))
   ((:stop @state))
-  (setval ATOM {} state))
+  (setval ATOM {} state)
+  (js/setTimeout (partial js/chrome.tabs.remove id) (lognormal 10 1)))
 
 (defn take-screenshot
   [id]
