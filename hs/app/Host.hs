@@ -35,4 +35,4 @@ main = do
   removeIfExists socketPath
   bind unixSocket $ SockAddrUnix socketPath
   listen unixSocket 1
-  bracket (fst <$> accept unixSocket) close serveClient
+  forever $ bracket (fst <$> accept unixSocket) close serveClient
