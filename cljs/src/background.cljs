@@ -37,8 +37,8 @@
             (js/chrome.tabs.onUpdated.addListener handle-tab-update
                                                   (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))
             (setval [ATOM :stop]
-                    (juxt #(js/chrome.tabs.onUpdated.removeListener handle-tab-update)
-                          (partial js/clearInterval (js/setInterval (take-screenshot (:id (js->clj tab :keywordize-keys true))) 100)))
+                    (juxt (partial js/clearInterval (js/setInterval (take-screenshot (:id (js->clj tab :keywordize-keys true))) 100))
+                          #(js/chrome.tabs.onUpdated.removeListener handle-tab-update))
                     state)
             (js/chrome.tabs.update (:id (js->clj tab :keywordize-keys true)) (clj->js {:url url}))))
 
