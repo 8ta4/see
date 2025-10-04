@@ -21,7 +21,10 @@
                (do (js/console.log "Screenshot didn't change")
                    (js-await [results (js/chrome.scripting.executeScript (clj->js {:func getText
                                                                                    :target {:tabId id}}))]
-                             (port.postMessage (:result (first (js->clj results :keywordize-keys true)))))
+                             (->> (js->clj results :keywordize-keys true)
+                                  first
+                                  :result
+                                  port.postMessage))
                    ((:stop @state))
                    (setval ATOM {} state))
                (setval [ATOM :screenshot] screenshot state))))
