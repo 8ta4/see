@@ -13,13 +13,13 @@ import Relude hiding (length)
 import Relude.Unsafe (fromJust)
 import System.Directory (createDirectoryIfMissing, getHomeDirectory)
 import System.Environment (getExecutablePath)
-import System.FilePath (takeFileName, (</>))
+import System.FilePath (takeDirectory, takeFileName, (</>))
 
 registerHost :: IO ()
 registerHost = do
   maybeDevenvRoot <- lookupEnv "DEVENV_ROOT"
   seePath <- getExecutablePath
-  let hostPath = maybe seePath (</> "hs/bin") (guarded ((== "see") <$> takeFileName) =<< maybeDevenvRoot) </> "host"
+  let hostPath = maybe (takeDirectory seePath) (</> "hs/bin") (guarded ((== "see") <$> takeFileName) =<< maybeDevenvRoot) </> "host"
   homeDirectory <- getHomeDirectory
   let nativeMessagingHostsPath = homeDirectory </> "Library/Application Support/Mozilla/NativeMessagingHosts"
   createDirectoryIfMissing True nativeMessagingHostsPath
