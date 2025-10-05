@@ -41,7 +41,10 @@ chrome =
           ]
     ]
 
+writeManifest :: (MonadIO m) => FilePath -> Object -> m ()
+writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
+
 main :: IO ()
 main = do
-  writeFileLBS "../cljs/public/manifest.json" $ encode $ Object $ firefox <> base
-  writeFileLBS "../cljs/release/manifest.json" $ encode $ Object $ chrome <> base
+  writeManifest "../cljs/public/manifest.json" firefox
+  writeManifest "../cljs/release/manifest.json" chrome
