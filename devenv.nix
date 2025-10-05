@@ -62,6 +62,14 @@
   # The fix is to disable the warning during initial GHCi loading in a .ghci file with `:set -Wno-prepositive-qualified-module`
   # and then use this ghcid command to re-enable it after ghcid has successfully started.
   # The trade-off is that the initial module load is not checked for this specific warning.
+  scripts.watch-build.exec = ''
+    cd "$DEVENV_ROOT/hs" && ghcid -a \
+    -c 'stack ghci --ghci-options "-ghci-script ghci/build.ghci" --no-load ' \
+    --no-height-limit \
+    -r \
+    -s ':set -Wprepositive-qualified-module' \
+    -W
+  '';
   scripts.watch-host.exec = ''
     cd "$DEVENV_ROOT/hs" && ghcid -a \
     -c 'stack ghci --ghci-options "-ghci-script ghci/host.ghci" --no-load ' \
