@@ -13,7 +13,7 @@ import Relude hiding (length)
 import Relude.Unsafe (fromJust)
 import System.Directory (createDirectoryIfMissing, getHomeDirectory)
 import System.Environment (getExecutablePath)
-import System.FilePath (takeDirectory, takeFileName, (</>))
+import System.FilePath (takeDirectory, takeFileName, (<.>), (</>))
 
 name :: FilePath
 name = "host"
@@ -26,7 +26,7 @@ registerHost = do
   homeDirectory <- getHomeDirectory
   let nativeMessagingHostsPath = homeDirectory </> "Library/Application Support/Mozilla/NativeMessagingHosts"
   createDirectoryIfMissing True nativeMessagingHostsPath
-  writeFileLBS (nativeMessagingHostsPath </> (name <> ".json"))
+  writeFileLBS (nativeMessagingHostsPath </> (name <.> "json"))
     $ encode
     $ object
       [ "allowed_extensions" .= ["@see" :: Text],
