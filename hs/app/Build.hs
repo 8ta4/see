@@ -4,10 +4,19 @@ import Data.Aeson (KeyValue ((.=)), Object, Value (Object), encode, object)
 import Data.Aeson.KeyMap qualified as KeyMap
 import Relude
 
+main :: IO ()
+main = do
+  writeManifest "../cljs/public/manifest.json" firefox
+  writeManifest "../cljs/release/manifest.json" chrome
+
+writeManifest :: (MonadIO m) => FilePath -> Object -> m ()
+writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
+
 base :: Object
 base =
   KeyMap.fromList
-    [ "manifest_version" .= (3 :: Int),
+    [ "host_permissions" .= (["<all_urls>"] :: [Text]),
+      "manifest_version" .= (3 :: Int),
       "name" .= ("see" :: Text),
       "permissions" .= (["nativeMessaging", "scripting"] :: [Text]),
       "version" .= ("0.1.0" :: Text)
@@ -27,8 +36,7 @@ firefox =
               .= object
                 [ "id" .= ("@see" :: Text)
                 ]
-          ],
-      "host_permissions" .= (["<all_urls>"] :: [Text])
+          ]
     ]
 
 chrome :: Object
@@ -40,11 +48,3 @@ chrome =
             "type" .= ("module" :: Text)
           ]
     ]
-
-writeManifest :: (MonadIO m) => FilePath -> Object -> m ()
-writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
-
-main :: IO ()
-main = do
-  writeManifest "../cljs/public/manifest.json" firefox
-  writeManifest "../cljs/release/manifest.json" chrome

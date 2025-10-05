@@ -11,8 +11,10 @@
   (atom {}))
 
 (defn handle-tab-update
-  [_ _ tab]
-  (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state))
+; https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated#:~:text=footnote-,filter,No,-No
+  [target-id event-id _ tab]
+  (when (= target-id event-id)
+    (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state)))
 
 (defn finalize
   [id]
@@ -21,7 +23,7 @@
             (->> (js->clj results :keywordize-keys true)
                  first
                  :result
-                 port.postMessage))
+                 (.postMessage port)))
   ((:stop @state))
   (setval ATOM {} state)
   (js/setTimeout (partial js/chrome.tabs.remove id) (lognormal 10 1)))
@@ -40,8 +42,9 @@
   (js/console.log "Message from host:")
   (js/console.log url)
   (js-await [tab (js/chrome.tabs.create (clj->js {}))]
-            (js/chrome.tabs.onUpdated.addListener handle-tab-update
-                                                  (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))
+; The `filter` argument is not used because Chrome does not support it.
+; https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated#:~:text=footnote-,filter,No,-No
+            (js/chrome.tabs.onUpdated.addListener (partial handle-tab-update (:id (js->clj tab :keywordize-keys true))))
             (setval [ATOM :stop]
                     (juxt (partial js/clearInterval (js/setInterval (partial take-screenshot (:id (js->clj tab :keywordize-keys true))) 100))
                           #(js/chrome.tabs.onUpdated.removeListener handle-tab-update)
@@ -51,4 +54,4 @@
 
 (defn init []
   (js/console.log "Hello, World!")
-  (port.onMessage.addListener handle-host))
+  (.addListener port.onMessage handle-host))
