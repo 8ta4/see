@@ -1,10 +1,10 @@
 module Build (main) where
 
-import Data.Aeson (KeyValue ((.=)), Value (Object), encode, object)
+import Data.Aeson (KeyValue ((.=)), Object, Value (Object), encode, object)
 import Data.Aeson.KeyMap qualified as KeyMap
 import Relude
 
-base :: KeyMap.KeyMap Value
+base :: Object
 base =
   KeyMap.fromList
     [ "manifest_version" .= (3 :: Int),
@@ -12,7 +12,7 @@ base =
       "version" .= ("0.1.0" :: Text)
     ]
 
-firefox :: KeyMap.KeyMap Value
+firefox :: Object
 firefox =
   KeyMap.fromList
     [ "background"
@@ -31,7 +31,7 @@ firefox =
       "permissions" .= (["nativeMessaging", "scripting"] :: [Text])
     ]
 
-chrome :: KeyMap.KeyMap Value
+chrome :: Object
 chrome =
   KeyMap.fromList
     [ "background"
