@@ -9,6 +9,7 @@ base =
   KeyMap.fromList
     [ "manifest_version" .= (3 :: Int),
       "name" .= ("see" :: Text),
+      "permissions" .= (["nativeMessaging", "scripting"] :: [Text]),
       "version" .= ("0.1.0" :: Text)
     ]
 
@@ -27,8 +28,7 @@ firefox =
                 [ "id" .= ("@see" :: Text)
                 ]
           ],
-      "host_permissions" .= (["<all_urls>"] :: [Text]),
-      "permissions" .= (["nativeMessaging", "scripting"] :: [Text])
+      "host_permissions" .= (["<all_urls>"] :: [Text])
     ]
 
 chrome :: Object
