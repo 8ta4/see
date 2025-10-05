@@ -115,6 +115,8 @@ source-dirs: app
 # By defining all modules under a single component, we ensure that HLS can track
 # changes and perform refactoring correctly across the entire codebase.
 executables:
+  build:
+    main: Build
   host:
     main: Host
   see:
