@@ -1,6 +1,5 @@
 # see
-release/*
-!release/manifest.json
+release
 
 # shadow-cljs
 node_modules/
