@@ -15,8 +15,17 @@ import System.Directory (createDirectoryIfMissing, getHomeDirectory)
 import System.Environment (getExecutablePath)
 import System.FilePath (takeDirectory, takeFileName, (<.>), (</>))
 
-name :: FilePath
-name = "host"
+main :: IO ()
+main = do
+  url <- execParser $ info (strArgument mempty <**> helper) mempty
+  registerHost
+  unixSocket <- createUnixSocket
+  socketPath <- getSocketPath
+  connect unixSocket $ SockAddrUnix socketPath
+  sendAll unixSocket $ encodeNativeMessage url
+  shutdown unixSocket ShutdownSend
+  contents <- getContents unixSocket
+  putTextLn $ fromJust $ decode contents
 
 registerHost :: IO ()
 registerHost = do
@@ -36,18 +45,9 @@ registerHost = do
         "type" .= ("stdio" :: Text)
       ]
 
+name :: FilePath
+name = "host"
+
 -- https://github.com/mdn/content/blob/4173f52767fe81e1dfe7ae373936a56b5abb50ea/files/en-us/mozilla/add-ons/webextensions/native_messaging/index.md?plain=1#L235
 encodeNativeMessage :: Text -> LazyByteString
 encodeNativeMessage = uncurry (<>) <$> (runPut <$> putWord32le <$> fromIntegral <$> length &&& id) <$> encode
-
-main :: IO ()
-main = do
-  url <- execParser $ info (strArgument mempty <**> helper) mempty
-  registerHost
-  unixSocket <- createUnixSocket
-  socketPath <- getSocketPath
-  connect unixSocket $ SockAddrUnix socketPath
-  sendAll unixSocket $ encodeNativeMessage url
-  shutdown unixSocket ShutdownSend
-  contents <- getContents unixSocket
-  putTextLn $ fromJust $ decode contents

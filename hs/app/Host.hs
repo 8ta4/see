@@ -11,6 +11,15 @@ import Relude
 import System.Directory (removeFile)
 import System.IO.Error (isDoesNotExistError)
 
+main :: IO ()
+main = do
+  unixSocket <- createUnixSocket
+  socketPath <- getSocketPath
+  removeIfExists socketPath
+  bind unixSocket $ SockAddrUnix socketPath
+  listen unixSocket 1
+  forever $ bracket (fst <$> accept unixSocket) close serveClient
+
 -- https://stackoverflow.com/a/8502391
 removeIfExists :: FilePath -> IO ()
 removeIfExists fileName = removeFile fileName `catch` handleExists
@@ -27,12 +36,3 @@ serveClient socket = do
   prefix <- hGet stdin 4
   message <- hGet stdin $ fromIntegral $ runGet getWord32le prefix
   sendAll socket message
-
-main :: IO ()
-main = do
-  unixSocket <- createUnixSocket
-  socketPath <- getSocketPath
-  removeIfExists socketPath
-  bind unixSocket $ SockAddrUnix socketPath
-  listen unixSocket 1
-  forever $ bracket (fst <$> accept unixSocket) close serveClient

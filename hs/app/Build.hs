@@ -4,6 +4,14 @@ import Data.Aeson (KeyValue ((.=)), Object, Value (Object), encode, object)
 import Data.Aeson.KeyMap qualified as KeyMap
 import Relude
 
+main :: IO ()
+main = do
+  writeManifest "../cljs/public/manifest.json" firefox
+  writeManifest "../cljs/release/manifest.json" chrome
+
+writeManifest :: (MonadIO m) => FilePath -> Object -> m ()
+writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
+
 base :: Object
 base =
   KeyMap.fromList
@@ -40,11 +48,3 @@ chrome =
             "type" .= ("module" :: Text)
           ]
     ]
-
-writeManifest :: (MonadIO m) => FilePath -> Object -> m ()
-writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
-
-main :: IO ()
-main = do
-  writeManifest "../cljs/public/manifest.json" firefox
-  writeManifest "../cljs/release/manifest.json" chrome
