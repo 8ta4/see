@@ -94,6 +94,7 @@
     brew bundle
     export PATH="$DEVENV_ROOT/cljs/node_modules/.bin:$PATH"
     cd "$DEVENV_ROOT/cljs" && npm i
+    cd "$DEVENV_ROOT/hs" && stack run build
   '';
 
   # https://devenv.sh/tasks/
