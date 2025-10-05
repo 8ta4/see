@@ -43,7 +43,7 @@ registerHost hostsPathSegment config = do
     $ Object
     $ config
     <> KeyMap.fromList
-      [ "description" .= ("" :: Text),
+      [ "description" .= ("Enables communication between the browser extension and the CLI." :: Text),
         "name" .= name,
         "path" .= hostPath,
         "type" .= ("stdio" :: Text)
