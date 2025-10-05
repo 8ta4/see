@@ -11,6 +11,7 @@
   (atom {}))
 
 (defn handle-tab-update
+; https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated#:~:text=footnote-,filter,No,-No
   [target-id event-id _ tab]
   (when (= target-id event-id)
     (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state)))
@@ -41,6 +42,8 @@
   (js/console.log "Message from host:")
   (js/console.log url)
   (js-await [tab (js/chrome.tabs.create (clj->js {}))]
+; The `filter` argument is not used because Chrome does not support it.
+; https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated#:~:text=footnote-,filter,No,-No
             (js/chrome.tabs.onUpdated.addListener (partial handle-tab-update (:id (js->clj tab :keywordize-keys true))))
             (setval [ATOM :stop]
                     (juxt (partial js/clearInterval (js/setInterval (partial take-screenshot (:id (js->clj tab :keywordize-keys true))) 100))
