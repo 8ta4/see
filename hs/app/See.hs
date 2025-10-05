@@ -15,6 +15,9 @@ import System.Directory (createDirectoryIfMissing, getHomeDirectory)
 import System.Environment (getExecutablePath)
 import System.FilePath (takeDirectory, takeFileName, (</>))
 
+name :: FilePath
+name = "host"
+
 registerHost :: IO ()
 registerHost = do
   maybeDevenvRoot <- lookupEnv "DEVENV_ROOT"
@@ -23,12 +26,12 @@ registerHost = do
   homeDirectory <- getHomeDirectory
   let nativeMessagingHostsPath = homeDirectory </> "Library/Application Support/Mozilla/NativeMessagingHosts"
   createDirectoryIfMissing True nativeMessagingHostsPath
-  writeFileLBS (nativeMessagingHostsPath </> "host.json")
+  writeFileLBS (nativeMessagingHostsPath </> (name <> ".json"))
     $ encode
     $ object
       [ "allowed_extensions" .= ["@see" :: Text],
         "description" .= ("" :: Text),
-        "name" .= ("host" :: Text),
+        "name" .= name,
         "path" .= hostPath,
         "type" .= ("stdio" :: Text)
       ]
