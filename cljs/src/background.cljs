@@ -11,8 +11,9 @@
   (atom {}))
 
 (defn handle-tab-update
-  [_ _ tab]
-  (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state))
+  [target-id event-id _ tab]
+  (when (= target-id event-id)
+    (setval [ATOM :status] (:status (js->clj tab :keywordize-keys true)) state)))
 
 (defn finalize
   [id]
@@ -40,8 +41,7 @@
   (js/console.log "Message from host:")
   (js/console.log url)
   (js-await [tab (js/chrome.tabs.create (clj->js {}))]
-            (js/chrome.tabs.onUpdated.addListener handle-tab-update
-                                                  (clj->js {:tabId (:id (js->clj tab :keywordize-keys true))}))
+            (js/chrome.tabs.onUpdated.addListener (partial handle-tab-update (:id (js->clj tab :keywordize-keys true))))
             (setval [ATOM :stop]
                     (juxt (partial js/clearInterval (js/setInterval (partial take-screenshot (:id (js->clj tab :keywordize-keys true))) 100))
                           #(js/chrome.tabs.onUpdated.removeListener handle-tab-update)
