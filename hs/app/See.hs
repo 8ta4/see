@@ -19,6 +19,7 @@ import System.FilePath (takeDirectory, takeFileName, (<.>), (</>))
 main :: IO ()
 main = do
   url <- execParser $ info (strArgument mempty <**> helper) mempty
+  -- TODO: Specify the Chrome extension ID in allowed_origins.
   registerHost "Library/Application Support/Google/Chrome/NativeMessagingHosts" $ KeyMap.fromList ["allowed_origins" .= ["" :: Text]]
   registerHost "Library/Application Support/Mozilla/NativeMessagingHosts" $ KeyMap.fromList ["allowed_extensions" .= ["@see" :: Text]]
   unixSocket <- createUnixSocket
