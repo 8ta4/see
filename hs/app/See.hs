@@ -1,6 +1,7 @@
 module See (main) where
 
-import Data.Aeson (KeyValue ((.=)), decode, encode, object)
+import Data.Aeson (KeyValue ((.=)), Object, Value (Object), decode, encode)
+import Data.Aeson.KeyMap qualified as KeyMap
 import Data.Binary.Put (putWord32le, runPut)
 import Data.ByteString.Lazy (LazyByteString)
 import Data.MonoTraversable.Unprefixed
@@ -18,7 +19,8 @@ import System.FilePath (takeDirectory, takeFileName, (<.>), (</>))
 main :: IO ()
 main = do
   url <- execParser $ info (strArgument mempty <**> helper) mempty
-  registerHost
+  registerHost "Library/Application Support/Google/Chrome/NativeMessagingHosts" $ KeyMap.fromList ["allowed_origins" .= ["" :: Text]]
+  registerHost "Library/Application Support/Mozilla/NativeMessagingHosts" $ KeyMap.fromList ["allowed_extensions" .= ["@see" :: Text]]
   unixSocket <- createUnixSocket
   socketPath <- getSocketPath
   connect unixSocket $ SockAddrUnix socketPath
@@ -27,19 +29,20 @@ main = do
   contents <- getContents unixSocket
   putTextLn $ fromJust $ decode contents
 
-registerHost :: IO ()
-registerHost = do
+registerHost :: FilePath -> Object -> IO ()
+registerHost hostsPathSegment config = do
   maybeDevenvRoot <- lookupEnv "DEVENV_ROOT"
   seePath <- getExecutablePath
   let hostPath = maybe (takeDirectory seePath) (</> "hs/bin") (guarded ((== "see") <$> takeFileName) =<< maybeDevenvRoot) </> name
   homeDirectory <- getHomeDirectory
-  let nativeMessagingHostsPath = homeDirectory </> "Library/Application Support/Mozilla/NativeMessagingHosts"
+  let nativeMessagingHostsPath = homeDirectory </> hostsPathSegment
   createDirectoryIfMissing True nativeMessagingHostsPath
   writeFileLBS (nativeMessagingHostsPath </> (name <.> "json"))
     $ encode
-    $ object
-      [ "allowed_extensions" .= ["@see" :: Text],
-        "description" .= ("" :: Text),
+    $ Object
+    $ config
+    <> KeyMap.fromList
+      [ "description" .= ("" :: Text),
         "name" .= name,
         "path" .= hostPath,
         "type" .= ("stdio" :: Text)
