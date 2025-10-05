@@ -21,7 +21,7 @@
             (->> (js->clj results :keywordize-keys true)
                  first
                  :result
-                 port.postMessage))
+                 (.postMessage port)))
   ((:stop @state))
   (setval ATOM {} state)
   (js/setTimeout (partial js/chrome.tabs.remove id) (lognormal 10 1)))
@@ -51,4 +51,4 @@
 
 (defn init []
   (js/console.log "Hello, World!")
-  (port.onMessage.addListener handle-host))
+  (.addListener port.onMessage handle-host))
