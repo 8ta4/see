@@ -7,7 +7,7 @@
 (defonce port
   (js/chrome.runtime.connectNative "host"))
 
-(def state
+(defonce state
   (atom {}))
 
 (defn handle-tab-update
@@ -49,7 +49,6 @@
                     state)
             (js/chrome.tabs.update (:id (js->clj tab :keywordize-keys true)) (clj->js {:url url}))))
 
-(port.onMessage.addListener handle-host)
-
 (defn init []
-  (js/console.log "Hello, World!"))
+  (js/console.log "Hello, World!")
+  (port.onMessage.addListener handle-host))
