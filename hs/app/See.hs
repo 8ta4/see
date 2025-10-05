@@ -22,7 +22,7 @@ registerHost :: IO ()
 registerHost = do
   maybeDevenvRoot <- lookupEnv "DEVENV_ROOT"
   seePath <- getExecutablePath
-  let hostPath = maybe (takeDirectory seePath) (</> "hs/bin") (guarded ((== "see") <$> takeFileName) =<< maybeDevenvRoot) </> "host"
+  let hostPath = maybe (takeDirectory seePath) (</> "hs/bin") (guarded ((== "see") <$> takeFileName) =<< maybeDevenvRoot) </> name
   homeDirectory <- getHomeDirectory
   let nativeMessagingHostsPath = homeDirectory </> "Library/Application Support/Mozilla/NativeMessagingHosts"
   createDirectoryIfMissing True nativeMessagingHostsPath
