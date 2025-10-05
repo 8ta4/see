@@ -15,7 +15,8 @@ writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
 base :: Object
 base =
   KeyMap.fromList
-    [ "manifest_version" .= (3 :: Int),
+    [ "host_permissions" .= (["<all_urls>"] :: [Text]),
+      "manifest_version" .= (3 :: Int),
       "name" .= ("see" :: Text),
       "permissions" .= (["nativeMessaging", "scripting"] :: [Text]),
       "version" .= ("0.1.0" :: Text)
@@ -35,8 +36,7 @@ firefox =
               .= object
                 [ "id" .= ("@see" :: Text)
                 ]
-          ],
-      "host_permissions" .= (["<all_urls>"] :: [Text])
+          ]
     ]
 
 chrome :: Object
