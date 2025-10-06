@@ -15,10 +15,10 @@ writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
 base :: Object
 base =
   KeyMap.fromList
-    [ "host_permissions" .= (["<all_urls>"] :: [Text]),
+    [ "host_permissions" .= ["<all_urls>" :: Text],
       "manifest_version" .= (3 :: Int),
       "name" .= ("see" :: Text),
-      "permissions" .= (["nativeMessaging", "scripting"] :: [Text]),
+      "permissions" .= ["nativeMessaging" :: Text, "scripting"],
       "version" .= ("0.1.0" :: Text)
     ]
 
@@ -27,7 +27,7 @@ firefox =
   KeyMap.fromList
     [ "background"
         .= object
-          [ "scripts" .= (["js/background.js"] :: [Text]),
+          [ "scripts" .= ["js/background.js" :: Text],
             "type" .= ("module" :: Text)
           ],
       "browser_specific_settings"
