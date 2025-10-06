@@ -46,5 +46,6 @@ chrome =
         .= object
           [ "service_worker" .= ("js/background.js" :: Text),
             "type" .= ("module" :: Text)
-          ]
+          ],
+      "key" .= ("0000" :: Text)
     ]
