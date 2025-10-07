@@ -136,28 +136,6 @@ No. The tool is called `see`, not `do`. It doesn't click anything. Its job is to
 
 No. `see` doesn't scroll.
 
-## Setup
-
-> How do I set up this tool's dev environment?
-
-1. Follow the [setup steps](https://github.com/8ta4/see/blob/fbcedce2c10c4d359d7c43d486bd0252ba18c84c/README.md#setup) in the README.md.
-
-1. Install [devenv](https://github.com/cachix/devenv/blob/0a1a32c2b68be15676304a489e86a2445815d93e/docs/getting-started.md#installation).
-
-1. Install [direnv](https://github.com/cachix/devenv/blob/0a1a32c2b68be15676304a489e86a2445815d93e/docs/automatic-shell-activation.md#installing-direnv).
-
-1. Open a terminal window.
-
-1. Run the following commands:
-
-   ```sh
-   git clone git@github.com:8ta4/see.git
-   cd see
-   direnv allow
-   ```
-
-The scripts are in the `devenv.nix` file.
-
 ## Architecture
 
 > Does the extension connect to a local HTTP server to talk to the CLI?
