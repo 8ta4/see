@@ -18,9 +18,9 @@ import System.FilePath (takeDirectory, takeFileName, (<.>), (</>))
 
 main :: IO ()
 main = do
-  url <- execParser $ info (strArgument mempty <**> helper) mempty
   registerHost "Library/Application Support/Google/Chrome/NativeMessagingHosts" $ KeyMap.fromList ["allowed_origins" .= ["chrome-extension://aobaoadfgfpeggekafmdlmgdondfnpdo/" :: Text]]
   registerHost "Library/Application Support/Mozilla/NativeMessagingHosts" $ KeyMap.fromList ["allowed_extensions" .= ["@see" :: Text]]
+  url <- execParser $ info (strArgument mempty <**> helper) mempty
   unixSocket <- createUnixSocket
   socketPath <- getSocketPath
   connect unixSocket $ SockAddrUnix socketPath
