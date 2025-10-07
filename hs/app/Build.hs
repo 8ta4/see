@@ -3,14 +3,18 @@ module Build (main) where
 import Data.Aeson (KeyValue ((.=)), Object, Value (Object), encode, object)
 import Data.Aeson.KeyMap qualified as KeyMap
 import Relude
+import System.Directory (createDirectoryIfMissing)
+import System.FilePath (takeDirectory)
 
 main :: IO ()
 main = do
   writeManifest "../cljs/public/manifest.json" firefox
   writeManifest "../cljs/release/manifest.json" chrome
 
-writeManifest :: (MonadIO m) => FilePath -> Object -> m ()
-writeManifest path config = writeFileLBS path $ encode $ Object $ config <> base
+writeManifest :: FilePath -> Object -> IO ()
+writeManifest path config = do
+  createDirectoryIfMissing True $ takeDirectory path
+  writeFileLBS path $ encode $ Object $ config <> base
 
 base :: Object
 base =
