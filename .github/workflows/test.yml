@@ -29,3 +29,12 @@ jobs:
       - run: devenv shell install
       - run: devenv shell release
       - run: devenv shell see -h
+      - run: zip -r bin.zip hs/bin
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          files: bin.zip
+
+permissions:
+  contents: write
