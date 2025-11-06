@@ -30,8 +30,8 @@ The goal is to see and be seen as human. There are no ifs, ands, or bots.
    git clone git@github.com:8ta4/see.git
    direnv allow see
    cd see
+   install
    release
-   cd
    ```
 
 1. [Load the unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked) from the `cljs/release` directory.
