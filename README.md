@@ -12,7 +12,7 @@ The goal is to see and be seen as human. There are no ifs, ands, or bots.
 
 > How do I set up `see`?
 
-1. Make sure you're using a Mac.
+1. Make sure you're using a Mac with Apple silicon.
 
 1. Install [devenv](https://github.com/cachix/devenv/blob/0a1a32c2b68be15676304a489e86a2445815d93e/docs/getting-started.md#installation).
 
