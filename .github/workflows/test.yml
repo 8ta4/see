@@ -29,13 +29,13 @@ jobs:
       - run: devenv shell install
       - run: devenv shell release
       - run: devenv shell see -h
-      - run: (cd hs && zip -r ../bin.zip bin)
+      - run: tar -czf bin.tar.gz -C hs/bin .
       # https://github.com/softprops/action-gh-release/blob/0adea5aa98b89355a3ff602e3f2d18bc4d77e7aa/README.md?plain=1#L55-L57
       - name: Release
         uses: softprops/action-gh-release@6da8fa9354ddfdc4aeace5fc48d7f679b5214090 # v2
         if: github.ref_type == 'tag'
         with:
-          files: bin.zip
+          files: bin.tar.gz
 
 # https://github.com/softprops/action-gh-release/blob/0adea5aa98b89355a3ff602e3f2d18bc4d77e7aa/README.md?plain=1#L236-L237
 permissions:
