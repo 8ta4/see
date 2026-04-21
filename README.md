@@ -25,13 +25,14 @@ The goal is to see and be seen as human. There are no ifs, ands, or bots.
 1. Run the following commands:
 
    ```sh
-   brew install 8ta4/see/see
-   see -h
    git clone git@github.com:8ta4/see.git
    direnv allow see
    cd see
    install
    release
+   cd
+   brew install 8ta4/see/see
+   see -h
    ```
 
 1. [Load the unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked) from the `cljs/release` directory.
